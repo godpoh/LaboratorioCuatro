@@ -15,8 +15,11 @@ import javax.imageio.ImageIO;
 public class RepositorioImagenes {
 
     public File guardarImagen(File archivo, String directorio) throws IOException {
-        // Crear el directorio si no existe
-        File directory = new File(directorio);
+        // Obtener la ruta absoluta del directorio src
+        String srcPath = new File("src").getAbsolutePath();
+        
+        // Crear el directorio dentro de src
+        File directory = new File(srcPath, directorio);
         if (!directory.exists()) {
             directory.mkdir();
         }

@@ -184,42 +184,31 @@ public class InsertarJuego extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser selectorDeArchivos = new JFileChooser();
-
+ JFileChooser selectorDeArchivos = new JFileChooser();
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagenes", "jpeg", "png", "jpg");
-
         selectorDeArchivos.setFileFilter(filtro);
 
         int devolverValor = selectorDeArchivos.showOpenDialog(null);
 
         if (devolverValor == JFileChooser.APPROVE_OPTION) {
             File archivo = selectorDeArchivos.getSelectedFile();
-            
+
             try {
-            RepositorioImagenes servicioImagen = new RepositorioImagenes();
-            File nuevoArchivo = servicioImagen.guardarImagen(archivo, "resources");
-            
-            // Mostrar la imagen en el JLabel
-            ImageIcon imagenIcon = new ImageIcon(nuevoArchivo.getAbsolutePath());
-            Image imagen = imagenIcon.getImage(); // transform it 
-            Image newimg = imagen.getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-            imagenIcon = new ImageIcon(newimg);  // transform it back
-            lblImagen.setIcon(imagenIcon);
-            
-            JOptionPane.showMessageDialog(this, "Imagen guardada y mostrada en: " + nuevoArchivo.getAbsolutePath());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al guardar la imagen: " + e.getMessage());
-        }
+                RepositorioImagenes servicioImagen = new RepositorioImagenes();
+                File nuevoArchivo = servicioImagen.guardarImagen(archivo, "resources");
 
-            File directorio = new File("resources");
-            if (!directorio.exists()) {
-                directorio.mkdir();
+                // Mostrar la imagen en el JLabel
+                ImageIcon imagenIcon = new ImageIcon(nuevoArchivo.getAbsolutePath());
+                Image imagen = imagenIcon.getImage();
+                Image newimg = imagen.getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), java.awt.Image.SCALE_SMOOTH);
+                imagenIcon = new ImageIcon(newimg);
+                lblImagen.setIcon(imagenIcon);
+
+                JOptionPane.showMessageDialog(this, "Imagen guardada y mostrada en: " + nuevoArchivo.getAbsolutePath());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error al guardar la imagen: " + e.getMessage());
             }
-//            File nuevoArchivo = new File(directorio, archivo.getName());
-
         }
-
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

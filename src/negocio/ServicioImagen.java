@@ -13,11 +13,9 @@ import java.io.IOException;
  * @author Admin
  */
 public class ServicioImagen {
-        public File guardarImagen(File archivo, String directorio) throws IOException {
-        // Crear una instancia del repositorio de imágenes
+
+    public File guardarImagen(File archivo, String directorio) throws IOException {
         RepositorioImagenes repositorioImagen = new RepositorioImagenes();
-        
-        // Delegar la tarea de guardar la imagen al repositorio de imágenes
         return repositorioImagen.guardarImagen(archivo, directorio);
     }
 }
