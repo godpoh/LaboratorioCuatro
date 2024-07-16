@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import negocio.ServicioImagen;
 
 /**
  *
@@ -194,8 +195,8 @@ public class InsertarJuego extends javax.swing.JDialog {
             File archivo = selectorDeArchivos.getSelectedFile();
 
             try {
-                RepositorioImagenes servicioImagen = new RepositorioImagenes();
-                File nuevoArchivo = servicioImagen.guardarImagen(archivo, "resources");
+                ServicioImagen servicioImagennn = new ServicioImagen();
+                File nuevoArchivo = servicioImagennn.guardarImagen(archivo, "imagenes");
 
                 // Mostrar la imagen en el JLabel
                 ImageIcon imagenIcon = new ImageIcon(nuevoArchivo.getAbsolutePath());

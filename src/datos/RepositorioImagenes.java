@@ -16,7 +16,7 @@ public class RepositorioImagenes {
 
     public File guardarImagen(File archivo, String directorio) throws IOException {
         // Obtener la ruta absoluta del directorio src
-        String srcPath = new File("src").getAbsolutePath();
+        String srcPath = new File("src/resources").getAbsolutePath();
         
         // Crear el directorio dentro de src
         File directory = new File(srcPath, directorio);
