@@ -39,7 +39,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        mCRUD.setText("Crud de Juegos");
+        mCRUD.setText("CRUD de juegos");
 
         jMIInsertaJuego.setText("Insertar  juego");
         jMIInsertaJuego.addActionListener(new java.awt.event.ActionListener() {

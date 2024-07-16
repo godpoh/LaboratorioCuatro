@@ -6,7 +6,7 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="mCRUD">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Crud de Juegos"/>
+            <Property name="text" type="java.lang.String" value="CRUD de juegos"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMIInsertaJuego">
