@@ -15,14 +15,16 @@ public class objDatosJuego {
     String nombre;
     String resena;
     int puntaje;
+    String imagen;
     
     public static ArrayList<objDatosJuego> listaObjetoJuegos = new ArrayList<>(); 
   
-    public objDatosJuego(String consola, String nombre, String resena, int puntaje) {
+    public objDatosJuego(String consola, String nombre, String resena, int puntaje, String imagen) {
         this.consola = consola;
         this.nombre = nombre;
         this.resena = resena;
         this.puntaje = puntaje;
+        this.imagen = imagen;
     }
 
     public String getConsola() {
@@ -55,5 +57,13 @@ public class objDatosJuego {
 
     public void setPuntaje(int puntaje) {
         this.puntaje = puntaje;
+    }
+    
+        public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }

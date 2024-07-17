@@ -6,7 +6,9 @@ package datos;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.net.URL;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,6 +38,7 @@ public class BDLecturaDatos {
         try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
+ 
                 resenas.add(linea);
             }
         } catch (Exception e) {
@@ -57,4 +60,5 @@ public class BDLecturaDatos {
 
         return todosLosJuegos;
     }
+
 }

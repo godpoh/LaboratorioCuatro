@@ -22,12 +22,17 @@ public class Juegos {
         for (int i = 0; i < listaJuego.size(); i++) {
             String consola = listaJuego.get(i).getConsola();
             String nombre = listaJuego.get(i).getNombre();
-            String resena = listaJuego.get(i).getResena();
+    String resena = listaJuego.get(i).getResena();
             int puntuacion = listaJuego.get(i).getPuntaje();
+            String imagenNombre = listaJuego.get(i).getImagen();
 
-            datos = consola + "," + nombre + "," + resena + "," + puntuacion;
+            datos = consola + "," + nombre + "," + resena + "," + puntuacion + ","  + imagenNombre;
         }
         bdEscrituraDatos.insertarEnArchivoJuego(datos);
         JOptionPane.showMessageDialog(null, "Se ha guardado correctamente la informacion.");
+    }
+    
+    public void cargarJuegos (ArrayList<String[]> leerArchivoCSV) {
+        
     }
 }

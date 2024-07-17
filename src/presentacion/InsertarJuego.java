@@ -23,6 +23,8 @@ import objetos.objDatosJuego;
  */
 public class InsertarJuego extends javax.swing.JDialog {
 
+    String nombreImagen = "";
+
     /**
      * Creates new form InsertarJuego
      */
@@ -206,45 +208,56 @@ public class InsertarJuego extends javax.swing.JDialog {
         if (devolverValor == JFileChooser.APPROVE_OPTION) {
             File archivo = selectorDeArchivos.getSelectedFile();
 
-            try {
-                ServicioImagen servicioImagennn = new ServicioImagen();
-                File nuevoArchivo = servicioImagennn.guardarImagen(archivo, "imagenes");
+            nombreImagen = archivo.getName();
 
-                // Mostrar la imagen en el JLabel
-                ImageIcon imagenIcon = new ImageIcon(nuevoArchivo.getAbsolutePath());
-                Image imagen = imagenIcon.getImage();
-                Image newimg = imagen.getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), java.awt.Image.SCALE_SMOOTH);
-                imagenIcon = new ImageIcon(newimg);
-                lblImagen.setIcon(imagenIcon);
+            // Mostrar la imagen en el JLabel
+            ImageIcon imagenIcon = new ImageIcon(archivo.getAbsolutePath());
+            Image imagen = imagenIcon.getImage();
+            Image newimg = imagen.getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), java.awt.Image.SCALE_SMOOTH);
+            imagenIcon = new ImageIcon(newimg);
+            lblImagen.setIcon(imagenIcon);
 
-                JOptionPane.showMessageDialog(this, "Imagen guardada y mostrada en: " + nuevoArchivo.getAbsolutePath());
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Error al guardar la imagen: " + e.getMessage());
-            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnInsertarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarJuegoActionPerformed
-        String consola = (String) jcbConsola.getSelectedItem();
-        String nombre = txtNombre.getText();
-        String resena = (String) jcbResena.getSelectedItem();
-        int puntaje = (int) jSpinner1.getValue();
+        if (nombreImagen != null) {
+            try {
+                File ruta = new File("src/resources/imagenes/", nombreImagen);
+                ServicioImagen servicioImagennn = new ServicioImagen();
+                File nuevoArchivo = servicioImagennn.guardarImagen(ruta, "imagenes");
 
-        objDatosJuego objeto = new objDatosJuego(consola, nombre, resena, puntaje);
-        objDatosJuego.listaObjetoJuegos.add(objeto);
+                String consola = (String) jcbConsola.getSelectedItem();
+                String nombre = txtNombre.getText();
+                String resena = (String) jcbResena.getSelectedItem();
+                int puntaje = (int) jSpinner1.getValue();
+                String imagen = nombreImagen;
 
-        Juegos juego = new Juegos();
-        juego.insertarJuego(objDatosJuego.listaObjetoJuegos);
+                objDatosJuego objeto = new objDatosJuego(consola, nombre, resena, puntaje, imagen);
+                objDatosJuego.listaObjetoJuegos.add(objeto);
+
+                Juegos juego = new Juegos();
+                juego.insertarJuego(objDatosJuego.listaObjetoJuegos);
+
+                JOptionPane.showMessageDialog(this, "Juego insertado exitosamente.");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Juego insertado correctamente");
+            }
+            JOptionPane.showMessageDialog(this, "Error al guardar la imagen: ");
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una imagen primero.");
+        }
     }//GEN-LAST:event_btnInsertarJuegoActionPerformed
 
+
     private void mostrarInformacion() {
-        
+
         BDLecturaDatos bdLecturaDatos = new BDLecturaDatos();
         bdLecturaDatos.leerArchivoTxTConsolas("src/resources/Consola.txt");
         for (String nombresConsola : bdLecturaDatos.nombresConsolas) {
             jcbConsola.addItem(nombresConsola);
         }
-        
+
         bdLecturaDatos.leerArchivoTxTResenas("src/resources/Resena.txt");
         for (String resena : bdLecturaDatos.resenas) {
             jcbResena.addItem(resena);
