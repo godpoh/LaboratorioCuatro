@@ -235,8 +235,6 @@ public class InsertarJuego extends javax.swing.JDialog {
 
         Juegos juego = new Juegos();
         juego.insertarJuego(objDatosJuego.listaObjetoJuegos);
-
-
     }//GEN-LAST:event_btnInsertarJuegoActionPerformed
 
     private void mostrarInformacion() {

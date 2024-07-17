@@ -17,6 +17,7 @@ public class BDLecturaDatos {
 
     public static ArrayList<String> nombresConsolas = new ArrayList<>();
     public static ArrayList<String> resenas = new ArrayList<>();
+    public static ArrayList<String[]> todosLosJuegos = new ArrayList<>();
 
     public ArrayList<String> leerArchivoTxTConsolas(String nombreArchivo) {
 
@@ -30,7 +31,7 @@ public class BDLecturaDatos {
         }
         return nombresConsolas;
     }
-    
+
     public ArrayList<String> leerArchivoTxTResenas(String nombreArchivo) {
         try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
             String linea;
@@ -41,5 +42,19 @@ public class BDLecturaDatos {
             JOptionPane.showMessageDialog(null, "Error al leer el archivo txt de Resenas", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
         }
         return resenas;
+    }
+
+    public ArrayList<String[]> leerArchivoCSVJuegos(String nombreArchivo) {
+        try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] juegos = linea.split(",");
+                todosLosJuegos.add(juegos);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al leer el archivo CSV", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return todosLosJuegos;
     }
 }
