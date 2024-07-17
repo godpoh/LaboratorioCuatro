@@ -4,13 +4,18 @@
  */
 package presentacion;
 
+import datos.BDEscrituraDatos;
+import datos.BDLecturaDatos;
 import datos.RepositorioImagenes;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import negocio.Juegos;
 import negocio.ServicioImagen;
+import objetos.objDatosJuego;
 
 /**
  *
@@ -25,6 +30,8 @@ public class InsertarJuego extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        mostrarInformacion();
+
     }
 
     /**
@@ -56,15 +63,15 @@ public class InsertarJuego extends javax.swing.JDialog {
 
         lblConsola.setText("Consola:");
 
-        jcbConsola.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbConsola.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbConsolaActionPerformed(evt);
+            }
+        });
 
         lblNombre.setText("Nombre:");
 
-        txtNombre.setText("Baldur's Gate 3 Early Access Review");
-
         jLabel1.setText("Reseña:");
-
-        jcbResena.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblPuntaje.setText("Puntaje:");
 
@@ -82,7 +89,7 @@ public class InsertarJuego extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -90,7 +97,7 @@ public class InsertarJuego extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblPuntaje)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, Short.MAX_VALUE))
+                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelDatosLayout.setVerticalGroup(
             panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,7 +128,7 @@ public class InsertarJuego extends javax.swing.JDialog {
         panelImagenLayout.setHorizontalGroup(
             panelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelImagenLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(117, Short.MAX_VALUE)
                 .addGroup(panelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelImagenLayout.createSequentialGroup()
                         .addComponent(jButton1)
@@ -140,6 +147,11 @@ public class InsertarJuego extends javax.swing.JDialog {
         );
 
         btnInsertarJuego.setText("Insertar Juego");
+        btnInsertarJuego.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertarJuegoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelInsertarJuegoLayout = new javax.swing.GroupLayout(panelInsertarJuego);
         panelInsertarJuego.setLayout(panelInsertarJuegoLayout);
@@ -185,7 +197,7 @@ public class InsertarJuego extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
- JFileChooser selectorDeArchivos = new JFileChooser();
+        JFileChooser selectorDeArchivos = new JFileChooser();
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagenes", "jpeg", "png", "jpg");
         selectorDeArchivos.setFileFilter(filtro);
 
@@ -211,6 +223,40 @@ public class InsertarJuego extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnInsertarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarJuegoActionPerformed
+        String consola = (String) jcbConsola.getSelectedItem();
+        String nombre = txtNombre.getText();
+        String resena = (String) jcbResena.getSelectedItem();
+        int puntaje = (int) jSpinner1.getValue();
+
+        objDatosJuego objeto = new objDatosJuego(consola, nombre, resena, puntaje);
+        objDatosJuego.listaObjetoJuegos.add(objeto);
+
+        Juegos juego = new Juegos();
+        juego.insertarJuego(objDatosJuego.listaObjetoJuegos);
+
+
+    }//GEN-LAST:event_btnInsertarJuegoActionPerformed
+
+    private void mostrarInformacion() {
+        
+        BDLecturaDatos bdLecturaDatos = new BDLecturaDatos();
+        bdLecturaDatos.leerArchivoTxTConsolas("src/resources/Consola.txt");
+        for (String nombresConsola : bdLecturaDatos.nombresConsolas) {
+            jcbConsola.addItem(nombresConsola);
+        }
+        
+        bdLecturaDatos.leerArchivoTxTResenas("src/resources/Resena.txt");
+        for (String resena : bdLecturaDatos.resenas) {
+            jcbResena.addItem(resena);
+        }
+
+    }
+
+    private void jcbConsolaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbConsolaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbConsolaActionPerformed
 
     /**
      * @param args the command line arguments
