@@ -23,12 +23,12 @@ public class Juegos {
     ArrayList<String[]> consolas = new ArrayList<>();
 
     BDEscrituraDatos bdEscrituraDatos = new BDEscrituraDatos();
-    
-        public Juegos() {
-            cargarDatos();
-        }
-    
-        private void cargarDatos() {
+
+    public Juegos() {
+        cargarDatos();
+    }
+
+    private void cargarDatos() {
         juegosNombres = BDLecturaDatos.leerArchivoCSVJuegos("src/resources/Games.csv");
         // Asignar las listas para resenas y consolas
         resenas = juegosNombres; // Si el CSV contiene reseñas y las resenas tienen la misma estructura que juegos
@@ -61,7 +61,7 @@ public class Juegos {
     }
 
     public void cargarResenas(JComboBox<String> jcbResenas) {
-        resenas = BDLecturaDatos.leerArchivoCSVJuegos("src/resources/Games.csv");        HashSet<String> nombresUnicos = new HashSet<>();
+        HashSet<String> nombresUnicos = new HashSet<>();
         for (String[] resena : resenas) {
             nombresUnicos.add(resena[2]); // Asumiendo que el nombre del juego está en la primera columna
         }

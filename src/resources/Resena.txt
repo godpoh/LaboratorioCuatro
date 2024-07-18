@@ -1,7 +1,0 @@
-Justo
-Bueno
-Malo
-Pobre
-Superb
-Mediocre
-Excelente
