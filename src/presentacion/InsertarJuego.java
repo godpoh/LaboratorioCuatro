@@ -6,6 +6,7 @@ package presentacion;
 
 import datos.BDEscrituraDatos;
 import datos.BDLecturaDatos;
+import static datos.BDLecturaDatos.leerArchivoCSV;
 import datos.RepositorioImagenes;
 import java.awt.Image;
 import java.io.File;
@@ -23,7 +24,8 @@ import objetos.objDatosJuego;
  */
 public class InsertarJuego extends javax.swing.JDialog {
 
-    String nombreImagen = "";
+    String nombreImagen;
+    private File archivoSeleccionado;
 
     /**
      * Creates new form InsertarJuego
@@ -206,12 +208,12 @@ public class InsertarJuego extends javax.swing.JDialog {
         int devolverValor = selectorDeArchivos.showOpenDialog(null);
 
         if (devolverValor == JFileChooser.APPROVE_OPTION) {
-            File archivo = selectorDeArchivos.getSelectedFile();
+            archivoSeleccionado = selectorDeArchivos.getSelectedFile();
+            nombreImagen = archivoSeleccionado.getName();
 
-            nombreImagen = archivo.getName();
 
             // Mostrar la imagen en el JLabel
-            ImageIcon imagenIcon = new ImageIcon(archivo.getAbsolutePath());
+            ImageIcon imagenIcon = new ImageIcon(archivoSeleccionado.getAbsolutePath());
             Image imagen = imagenIcon.getImage();
             Image newimg = imagen.getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), java.awt.Image.SCALE_SMOOTH);
             imagenIcon = new ImageIcon(newimg);
@@ -221,17 +223,17 @@ public class InsertarJuego extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnInsertarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarJuegoActionPerformed
+        
         if (nombreImagen != null) {
             try {
-                File ruta = new File("src/resources/imagenes/", nombreImagen);
                 ServicioImagen servicioImagennn = new ServicioImagen();
-                File nuevoArchivo = servicioImagennn.guardarImagen(ruta, "imagenes");
+                File nuevoArchivo = servicioImagennn.guardarImagen(archivoSeleccionado, "imagenes");
 
                 String consola = (String) jcbConsola.getSelectedItem();
                 String nombre = txtNombre.getText();
                 String resena = (String) jcbResena.getSelectedItem();
                 int puntaje = (int) jSpinner1.getValue();
-                String imagen = nombreImagen;
+                String imagen = nuevoArchivo.getName();
 
                 objDatosJuego objeto = new objDatosJuego(consola, nombre, resena, puntaje, imagen);
                 objDatosJuego.listaObjetoJuegos.add(objeto);
@@ -240,28 +242,18 @@ public class InsertarJuego extends javax.swing.JDialog {
                 juego.insertarJuego(objDatosJuego.listaObjetoJuegos);
 
                 JOptionPane.showMessageDialog(this, "Juego insertado exitosamente.");
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Juego insertado correctamente");
-            }
-            JOptionPane.showMessageDialog(this, "Error al guardar la imagen: ");
-        } else {
-            JOptionPane.showMessageDialog(this, "Seleccione una imagen primero.");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error al guardar la imagen: " + e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al insertar el juego: " + e.getMessage());
         }
+    } else {
+        JOptionPane.showMessageDialog(this, "Seleccione una imagen primero.");
+    }
     }//GEN-LAST:event_btnInsertarJuegoActionPerformed
 
-
     private void mostrarInformacion() {
-
-        BDLecturaDatos bdLecturaDatos = new BDLecturaDatos();
-        bdLecturaDatos.leerArchivoTxTConsolas("src/resources/Consola.txt");
-        for (String nombresConsola : bdLecturaDatos.nombresConsolas) {
-            jcbConsola.addItem(nombresConsola);
-        }
-
-        bdLecturaDatos.leerArchivoTxTResenas("src/resources/Resena.txt");
-        for (String resena : bdLecturaDatos.resenas) {
-            jcbResena.addItem(resena);
-        }
+        leerArchivoCSV("src/resources/Games.csv", jcbConsola, jcbResena);
 
     }
 
