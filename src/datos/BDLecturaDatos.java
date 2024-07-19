@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class BDLecturaDatos {
 
-    public static ArrayList<String[]> todosLosJuegos = new ArrayList<>();
+public static ArrayList<String[]> todosLosJuegos = new ArrayList<>();
 
     public static ArrayList<String[]> leerArchivoCSVJuegos(String nombreArchivo) {
         try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {

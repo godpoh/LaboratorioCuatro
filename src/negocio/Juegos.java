@@ -51,9 +51,12 @@ public class Juegos {
     }
 
     public void cargarJuegosNombre(JComboBox<String> jcbNombres) {
+        juegosNombres = BDLecturaDatos.leerArchivoCSVJuegos("src/resources/Games.csv");
         HashSet<String> nombresUnicos = new HashSet<>();
         for (String[] juego : juegosNombres) {
-            nombresUnicos.add(juego[1]); // Asumiendo que el nombre del juego está en la primera columna
+            if (juego.length > 1) { // Ensure there are at least two elements
+                nombresUnicos.add(juego[1]);
+            }
         }
         for (String nombre : nombresUnicos) {
             jcbNombres.addItem(nombre);
@@ -63,7 +66,9 @@ public class Juegos {
     public void cargarResenas(JComboBox<String> jcbResenas) {
         HashSet<String> nombresUnicos = new HashSet<>();
         for (String[] resena : resenas) {
-            nombresUnicos.add(resena[2]); // Asumiendo que el nombre del juego está en la primera columna
+            if (resena.length > 2) { // Ensure there are at least three elements
+                nombresUnicos.add(resena[2]);
+            }
         }
         for (String nombre : nombresUnicos) {
             jcbResenas.addItem(nombre);
@@ -71,6 +76,7 @@ public class Juegos {
     }
 
     public void cargarConsolas(JComboBox<String> jcbResenas) {
+        consolas = BDLecturaDatos.leerArchivoCSVJuegos("src/resources/Games.csv");
         HashSet<String> nombresUnicos = new HashSet<>();
         for (String[] consola : consolas) {
             nombresUnicos.add(consola[0]); // Asumiendo que el nombre del juego está en la primera columna
@@ -78,5 +84,18 @@ public class Juegos {
         for (String nombre : nombresUnicos) {
             jcbResenas.addItem(nombre);
         }
+    }
+
+    public String[] obtenerDatosJuegoPorNombre(String nombreJuego) {
+        for (String[] juego : juegosNombres) {
+            if (juego[1].equals(nombreJuego)) { // Asumiendo que el nombre del juego está en la segunda columna
+                return new String[]{
+                    juego[0], // Consola
+                    juego[2], // Reseña
+                    juego[3] // Puntaje
+                };
+            }
+        }
+        return null; // Retorna null si no se encuentra el juego
     }
 }

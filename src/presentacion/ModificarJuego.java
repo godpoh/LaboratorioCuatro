@@ -22,7 +22,11 @@ public class ModificarJuego extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         cargarJuegosNombresYDatos();
 
-
+        jcbNombreJuegos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarDatosJuegoSeleccionado();
+            }
+        });
     }
 
     /**
@@ -101,6 +105,8 @@ public class ModificarJuego extends javax.swing.JDialog {
 
         lblNombre.setText("Nombres de juegos:");
 
+        jcbNombreJuegos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un juego:" }));
+
         buttonGroup1.add(rdAaE);
         rdAaE.setText("A a E");
 
@@ -154,11 +160,14 @@ public class ModificarJuego extends javax.swing.JDialog {
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
 
+        jcbConsolas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elija una consola" }));
         jcbConsolas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbConsolasActionPerformed(evt);
             }
         });
+
+        jcbResena.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elija un reseña" }));
 
         javax.swing.GroupLayout panelInformacionLayout = new javax.swing.GroupLayout(panelInformacion);
         panelInformacion.setLayout(panelInformacionLayout);
@@ -168,11 +177,11 @@ public class ModificarJuego extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(lblConsola, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jcbConsolas, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jcbConsolas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblResena)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jcbResena, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jcbResena, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblPuntaje)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -266,6 +275,21 @@ public class ModificarJuego extends javax.swing.JDialog {
         juegos.cargarConsolas(jcbConsolas);
         juegos.cargarResenas(jcbResena);
     }
+    
+    private void cargarDatosJuegoSeleccionado() {
+    String nombreSeleccionado = (String) jcbNombreJuegos.getSelectedItem();
+    Juegos juegos = new Juegos();
+    String[] datosJuego = juegos.obtenerDatosJuegoPorNombre(nombreSeleccionado);
+    
+//    ImageIcon imagenIcon = ImageIcon();
+    if (datosJuego != null) {
+        jcbConsolas.setSelectedItem(datosJuego[0]);
+        jcbResena.setSelectedItem(datosJuego[1]);
+        jSpinner1.setValue(Integer.parseInt(datosJuego[2]));
+//        lblImagen.setIcon(icon);;
+    }
+}
+
 
     /**
      * @param args the command line arguments
