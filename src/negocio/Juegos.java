@@ -18,7 +18,7 @@ import objetos.objDatosJuego;
  */
 public class Juegos {
 
-    ArrayList<String[]> juegosNombres = new ArrayList<>();
+    public ArrayList<String[]> juegosNombres = new ArrayList<>();
     ArrayList<String[]> resenas = new ArrayList<>();
     ArrayList<String[]> consolas = new ArrayList<>();
 

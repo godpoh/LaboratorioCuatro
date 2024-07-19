@@ -7,6 +7,7 @@ package presentacion;
 import datos.BDLecturaDatos;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.TreeSet;
 import negocio.Juegos;
 
 /**
@@ -27,6 +28,37 @@ public class ModificarJuego extends javax.swing.JDialog {
                 cargarDatosJuegoSeleccionado();
             }
         });
+
+        rdAaE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtrarJuegosPorInicial('A', 'E');
+            }
+        });
+
+        rdFaK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtrarJuegosPorInicial('F', 'K');
+            }
+        });
+
+        rdLaP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtrarJuegosPorInicial('L', 'P');
+            }
+        });
+
+        rdQaV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtrarJuegosPorInicial('Q', 'V');
+            }
+        });
+
+        rdWaZ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtrarJuegosPorInicial('W', 'Z');
+            }
+        });
+
     }
 
     /**
@@ -269,27 +301,48 @@ public class ModificarJuego extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbConsolasActionPerformed
 
+    private void filtrarJuegosPorInicial(char inicio, char fin) {
+        Juegos juegos = new Juegos();
+        TreeSet<String> nombresFiltrados = new TreeSet<>();
+        for (String[] juego : juegos.juegosNombres) {
+            if (juego.length > 1) {
+                char inicial = Character.toUpperCase(juego[1].charAt(0));
+                if (inicial >= inicio && inicial <= fin) {
+                    nombresFiltrados.add(juego[1]);
+                }
+            }
+        }
+        actualizarComboBoxNombres(nombresFiltrados);
+    }
+
+    // Method to update JComboBox with filtered names
+    private void actualizarComboBoxNombres(TreeSet<String> nombresFiltrados) {
+        jcbNombreJuegos.removeAllItems();
+        for (String nombre : nombresFiltrados) {
+            jcbNombreJuegos.addItem(nombre);
+        }
+    }
+
     public void cargarJuegosNombresYDatos() {
         Juegos juegos = new Juegos();
         juegos.cargarJuegosNombre(jcbNombreJuegos);
         juegos.cargarConsolas(jcbConsolas);
         juegos.cargarResenas(jcbResena);
     }
-    
-    private void cargarDatosJuegoSeleccionado() {
-    String nombreSeleccionado = (String) jcbNombreJuegos.getSelectedItem();
-    Juegos juegos = new Juegos();
-    String[] datosJuego = juegos.obtenerDatosJuegoPorNombre(nombreSeleccionado);
-    
-//    ImageIcon imagenIcon = ImageIcon();
-    if (datosJuego != null) {
-        jcbConsolas.setSelectedItem(datosJuego[0]);
-        jcbResena.setSelectedItem(datosJuego[1]);
-        jSpinner1.setValue(Integer.parseInt(datosJuego[2]));
-//        lblImagen.setIcon(icon);;
-    }
-}
 
+    private void cargarDatosJuegoSeleccionado() {
+        String nombreSeleccionado = (String) jcbNombreJuegos.getSelectedItem();
+        Juegos juegos = new Juegos();
+        String[] datosJuego = juegos.obtenerDatosJuegoPorNombre(nombreSeleccionado);
+
+//    ImageIcon imagenIcon = ImageIcon();
+        if (datosJuego != null) {
+            jcbConsolas.setSelectedItem(datosJuego[0]);
+            jcbResena.setSelectedItem(datosJuego[1]);
+            jSpinner1.setValue(Integer.parseInt(datosJuego[2]));
+//        lblImagen.setIcon(icon);;
+        }
+    }
 
     /**
      * @param args the command line arguments
