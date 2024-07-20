@@ -5,6 +5,11 @@
 package presentacion;
 
 import datos.BDLecturaDatos;
+import static datos.BDLecturaDatos.consolasUnicas;
+import static datos.BDLecturaDatos.leerArchivoCSVJuegos;
+import static datos.BDLecturaDatos.nombresUnicos;
+import static datos.BDLecturaDatos.resenasUnicas;
+import static datos.BDLecturaDatos.todosLosJuegos;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -38,7 +43,6 @@ public class InsertarJuego extends javax.swing.JDialog {
         textField.setEditable(false);
         textField.setFocusable(false);
         JComboBox<String> jcbNombres = new JComboBox<>();
-
 
         // Add the combo boxes to the panel
         // Initialize the game data
@@ -261,8 +265,17 @@ public class InsertarJuego extends javax.swing.JDialog {
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione una imagen primero.");
         }
+        recargarDatos();
     }//GEN-LAST:event_btnInsertarJuegoActionPerformed
+    public static void recargarDatos() {
+        todosLosJuegos.clear(); // Limpia los datos existentes
+        nombresUnicos.clear();
+        resenasUnicas.clear();
+        consolasUnicas.clear();
 
+        // Luego, vuelve a cargar el archivo CSV
+        leerArchivoCSVJuegos();
+    }
 
     private void jcbConsolaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbConsolaActionPerformed
         // TODO add your handling code here:

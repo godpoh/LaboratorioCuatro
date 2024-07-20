@@ -4,7 +4,6 @@
  */
 package presentacion;
 
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -22,17 +21,17 @@ import negocio.Juegos;
  */
 public class ModificarJuego extends javax.swing.JDialog {
 
-     String rutaImagen;
+    String rutaImagen;
 
     public ModificarJuego(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         cargarJuegosNombresYDatos();
-        
+
         JSpinner.DefaultEditor editor = (JSpinner.DefaultEditor) jSpinner1.getEditor();
         JFormattedTextField textField = editor.getTextField();
-        
+
         textField.setEditable(false);
         textField.setFocusable(false);
 
@@ -311,7 +310,6 @@ public class ModificarJuego extends javax.swing.JDialog {
         String nombre = (String) jcbNombreJuegos.getSelectedItem();
         String resena = (String) jcbResena.getSelectedItem();
         int puntuacion = (Integer) jSpinner1.getValue();
-        
 
         String[] datosJuego = {consola, nombre, resena, String.valueOf(puntuacion), rutaImagen};
 
@@ -345,7 +343,8 @@ public class ModificarJuego extends javax.swing.JDialog {
     }
 
     public void cargarJuegosNombresYDatos() {
-    
+        Juegos juegos = new Juegos();
+        Juegos.cargarDatosEnComboBox(jcbNombreJuegos, jcbResena, jcbConsolas);
 
     }
 

@@ -9,8 +9,6 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashSet;
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
-import static negocio.Juegos.juegosNombres;
 
 /**
  *
@@ -18,42 +16,59 @@ import static negocio.Juegos.juegosNombres;
  */
 public class BDLecturaDatos {
 
+    public static HashSet<String> nombresUnicos = new HashSet<>();
+    public static HashSet<String> resenasUnicas = new HashSet<>();
+    public static HashSet<String> consolasUnicas = new HashSet<>();
     private static final String RUTA_ARCHIVO = "src/resources/Games.csv";
     public static ArrayList<String[]> todosLosJuegos = new ArrayList<>();
 
     public static ArrayList<String[]> leerArchivoCSVJuegos() {
-    HashSet<String> juegosSet = new HashSet<>();
-    todosLosJuegos.clear(); // Clear the list before reading the file
-    try (BufferedReader br = new BufferedReader(new FileReader(RUTA_ARCHIVO))) {
-        String linea;
-        while ((linea = br.readLine()) != null) {
-            String[] partes = linea.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-            String juegoClave = partes[0] + "," + partes[1] + "," + partes[2]; // Ajusta esto según las columnas únicas
-            if (juegosSet.add(juegoClave)) { // Solo añade si no está en el Set
-                todosLosJuegos.add(partes);
+        ArrayList<String[]> juegosList = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(RUTA_ARCHIVO))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                linea = linea.trim(); // Eliminar espacios en blanco al principio y al final
+                if (linea.isEmpty()) {
+                    continue; // Omitir líneas vacías
+                }
+                String[] partes = linea.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                if (partes.length >= 3) { // Verificar que hay al menos 3 columnas
+                    juegosList.add(partes);
+                } else {
+                    System.err.println("Línea inválida en CSV: " + linea);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Imprimir el stack trace en caso de error
+        }
+
+        // Crear un Set para eliminar duplicados
+        HashSet<String> juegosSet = new HashSet<>();
+        ArrayList<String[]> juegosSinDuplicados = new ArrayList<>();
+        for (String[] juego : juegosList) {
+            String juegoClave = juego[0] + "," + juego[1] + "," + juego[2]; // Ajusta esto según las columnas únicas
+            if (juegosSet.add(juegoClave)) {
+                juegosSinDuplicados.add(juego);
             }
         }
-    } catch (Exception e) {
-        
+
+        todosLosJuegos.clear();
+        todosLosJuegos.addAll(juegosSinDuplicados);
+
+        return todosLosJuegos;
     }
 
-    return todosLosJuegos;
-}
-
     public static void cargarDatos(JComboBox<String> jcbNombres, JComboBox<String> jcbResenas, JComboBox<String> jcbConsolas) {
-        HashSet<String> nombresUnicos = new HashSet<>();
-        HashSet<String> resenasUnicas = new HashSet<>();
-        HashSet<String> consolasUnicas = new HashSet<>();
 
         for (String[] juego : todosLosJuegos) {
             if (juego.length > 1) {
-                nombresUnicos.add(juego[1]); // Assuming the game name is in the second column
+                nombresUnicos.add(juego[1]); // Asumiendo que el nombre del juego está en la segunda columna
             }
             if (juego.length > 2) {
                 resenasUnicas.add(juego[2]);
             }
             if (juego.length > 0) {
-                consolasUnicas.add(juego[0]); // Assuming the console name is in the first column
+                consolasUnicas.add(juego[0]); // Asumiendo que el nombre de la consola está en la primera columna
             }
         }
 
@@ -78,4 +93,6 @@ public class BDLecturaDatos {
             jcbConsolas.addItem(consola);
         }
     }
+
 }
+

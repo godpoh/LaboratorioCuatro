@@ -33,27 +33,8 @@ public class Juegos {
 
     // Method to populate the JComboBox components
     public static void cargarDatosEnComboBox(JComboBox<String> jcbNombres, JComboBox<String> jcbResenas, JComboBox<String> jcbConsolas) {
-    // Imprimir tamaños para verificar
-    System.out.println("Tamaño de nombresUnicos: " + nombresUnicos.size());
-    System.out.println("Tamaño de resenasUnicas: " + resenasUnicas.size());
-    System.out.println("Tamaño de consolasUnicas: " + consolasUnicas.size());
-
-    jcbNombres.removeAllItems();
-    for (String nombre : nombresUnicos) {
-        jcbNombres.addItem(nombre);
+        BDLecturaDatos.cargarDatos(jcbNombres, jcbResenas, jcbConsolas);
     }
-
-    jcbResenas.removeAllItems();
-    for (String resena : resenasUnicas) {
-        jcbResenas.addItem(resena);
-    }
-
-    jcbConsolas.removeAllItems();
-    for (String consola : consolasUnicas) {
-        jcbConsolas.addItem(consola);
-    }
-}
-
 
     BDEscrituraDatos bdEscrituraDatos = new BDEscrituraDatos();
 
@@ -154,4 +135,5 @@ public class Juegos {
         // Cargar los datos actualizados en los JComboBox
         cargarDatosEnComboBox(jcbNombres, jcbResenas, jcbConsolas);
     }
+
 }

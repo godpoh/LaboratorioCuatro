@@ -28,8 +28,10 @@ public class EliminarJuego extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         cargarJuegosNombresYDatos();
+        Juegos.inicializarDatos();
         jcbConsolas.setEnabled(false);
         jcbResena.setEnabled(false);
+        jSpinner1.setEnabled(false);
 
         jcbNombreJuegos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +80,7 @@ public class EliminarJuego extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         panelImagen = new javax.swing.JPanel();
         lblImagen = new javax.swing.JLabel();
         panelInsertarJuego = new javax.swing.JPanel();
@@ -146,14 +149,19 @@ public class EliminarJuego extends javax.swing.JDialog {
 
         jcbNombreJuegos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un juego:" }));
 
+        buttonGroup1.add(rdAaE);
         rdAaE.setText("A a E");
 
+        buttonGroup1.add(rdFaK);
         rdFaK.setText("F a K");
 
+        buttonGroup1.add(rdLaP);
         rdLaP.setText("L a P");
 
+        buttonGroup1.add(rdQaV);
         rdQaV.setText("Q a V");
 
+        buttonGroup1.add(rdWaZ);
         rdWaZ.setText("W a Z");
 
         javax.swing.GroupLayout panelBotonesLayout = new javax.swing.GroupLayout(panelBotones);
@@ -296,10 +304,20 @@ public class EliminarJuego extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarJuegoActionPerformed
-    String nombre = (String) jcbNombreJuegos.getSelectedItem();
-    
-    Juegos juegos = new Juegos();
-    juegos.eliminarJuegoPorNombre(nombre);
+        String nombre = (String) jcbNombreJuegos.getSelectedItem();
+        Juegos juegos = new Juegos();
+    if (nombre != null && !nombre.isEmpty()) {
+        juegos.eliminarJuegoPorNombre(nombre);
+        Juegos.actualizarJComboBox(jcbNombreJuegos, jcbResena, jcbConsolas);
+        // Limpiar la información del juego eliminado
+        jcbConsolas.setSelectedIndex(0);
+        jcbResena.setSelectedIndex(0);
+        jSpinner1.setValue(1);
+        lblImagen.setIcon(null);
+        lblImagen.setText("Juego sin imagen");
+    } else {
+        JOptionPane.showMessageDialog(null, "Seleccione un juego para eliminar");
+    }
     }//GEN-LAST:event_btnEliminarJuegoActionPerformed
     private void filtrarJuegosPorInicial(char inicio, char fin) {
         Juegos juegos = new Juegos();
@@ -323,8 +341,8 @@ public class EliminarJuego extends javax.swing.JDialog {
     }
 
     public void cargarJuegosNombresYDatos() {
- 
-
+        Juegos juegos = new Juegos();
+        Juegos.cargarDatosEnComboBox(jcbNombreJuegos, jcbResena, jcbConsolas);
 
     }
 
@@ -420,6 +438,7 @@ public class EliminarJuego extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminarJuego;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JComboBox<String> jcbConsolas;
     private javax.swing.JComboBox<String> jcbNombreJuegos;
