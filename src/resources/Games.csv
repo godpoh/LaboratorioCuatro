@@ -1,9 +1,4 @@
 Console,GameName,Review,Score
-PC,Baldur's Gate 3 Early Access Review,Early Access,6
-NS,Control: Ultimate Edition Cloud Version Review,Good,7
-"XONE, PC, PS4",Doom Eternal: The Ancient Gods Part 1 Review,Good,7
-"XONE, PC, PS4",Watch Dogs: Legion Review,Great,8
-PC,Ring Of Pain Review,Great,8
 NS,Pikmin 3 Deluxe Review,Great,8
 "PC, XONE, PS4",Ghostrunner Review,Good,7
 "PC, NS",Disc Room Review – Getting Buzzed,Great,8
@@ -641,6 +636,7 @@ NS,Fire Emblem Warriors Review,Fair,6
 "PC, XONE, PS4",The Evil Within 2 Review,Great,8
 PC,The Flame in the Flood Review,Great,8
 "PC, PS4, NS",Stardew Valley Review,Superb,9
+PC,A Hat In Time Review,Good,7
 PS4,Gundam Versus Review,Good,7
 "PS4, NS",Axiom Verge Review,Great,8
 NS,FIFA 18 Nintendo Switch Review,Mediocre,5
@@ -833,7 +829,6 @@ PC,Planet Coaster Review,Superb,9
 PS4,Robinson: The Journey Review,Good,7
 PS4,The Last Guardian Review,Superb,9
 XONE,Dead Rising 4 Review,Good,7
-PC,Orwell Review,Great,8
 PS4,Final Fantasy 15 Review,Great,8
 PS4,Watch Dogs 2 Review,Great,8
 "PS4, XONE",Hitman Review,Great,8
@@ -1338,7 +1333,7 @@ PS4,Helldivers Review,Great,8
 "PS4, XONE",DmC: Devil May Cry Definitive Edition Review,Superb,9
 "PC, PS4, XONE",Lords of the Fallen - Ancient Labyrinth Review,Bad,3
 "WIIU, 3DS",Mario vs. Donkey Kong: Tipping Stars Review,Mediocre,5
-PS4,Q*Bert Rebooted Review,Bad,3,null
+PS4,Q*Bert Rebooted Review,Bad,3
 VITA,Oreshika: Tainted Bloodlines Review,Great,8
 XONE,Screamride Review,Good,7
 XONE,Resident Evil: Revelations 2 - Episode Two Review,Fair,6
@@ -3046,7 +3041,6 @@ PS3,Infamous 2 Review,Good,7
 X360,Hunted: The Demon's Forge Review,Mediocre,5
 PC,Hunted: The Demon's Forge Review,Poor,4
 PS3,Dirt 3 Review,Superb,9
-3DS,Cartoon Network: Punch Time Explosion Review,Mediocre,5
 PS3,Red Faction: Armageddon Review,Great,8
 X360,Red Faction: Armageddon Review,Great,8
 PC,DiRT 3 Review,Superb,9
@@ -3071,7 +3065,8 @@ X360,Virtua Tennis 4 Review,Mediocre,5
 PS3,MX vs. ATV Alive Review,Fair,6
 X360,MX vs. ATV Alive Review,Fair,6
 PS3,Brink Review,Fair,6
-PS3,L.A. Noire Review,Superb,9,null
+PS3,L.A. Noire Review,Superb,9
+X360,L.A. Noire Review,Superb,9
 X360,AFL Live Review,Fair,6
 PC,Hydrophobia Prophecy Review,Good,7
 PC,Mount & Blade: With Fire & Sword Review,Good,7
@@ -3888,7 +3883,6 @@ X360,Tropico 3 Review,Fair,6
 PS3,Sonic & Sega All-Stars Racing Review,Great,8
 WII,Sonic & Sega All-Stars Racing Review,Great,8
 X360,Sonic & Sega All-Stars Racing with Banjo-Kazooie Review,Great,8
-PS3,Star Wars: The Force Unleashed Hoth Mission Pack Review,Poor,4
 PS3,Heavy Rain Review,Great,8
 X360,Dark Void: Survivor Missions Review,Good,7
 PS3,Dark Void: Survivor Missions Review,Good,7
@@ -4329,7 +4323,6 @@ PS3,Battlefield 1943 Review,Great,8
 X360,Battlefield 1943 Review,Great,8
 PSP,"Holy Invasion of Privacy, Badman! What Did I Do to Deserve This? Review",Fair,6
 PSP,The Bigs 2 Review,Good,7
-WII,Overlord: Dark Legend Review,Mediocre,5
 PC,Blood Bowl Review,Good,7
 X360,The Bigs 2 Review,Great,8
 PS3,The Bigs 2 Review,Great,8
@@ -5018,7 +5011,7 @@ DS,Looney Tunes: Cartoon Conductor Review,Fair,6
 PC,Out of the Park Baseball 9 Review,Great,8
 PS3,Civilization Revolution Review,Superb,9
 DS,Lego Indiana Jones: The Original Adventures Review,Good,7
-DS,WALL-E Review,Bad,3,null
+DS,WALL-E Review,Bad,3
 PS3,NCAA Football 09 Review,Good,7
 PC,Devil May Cry 4 Review,Great,8
 WII,Final Fantasy Fables: Chocobo's Dungeon Review,Good,7
@@ -5035,6 +5028,7 @@ X360,Kung Fu Panda Review,Fair,6
 DS,Code Lyoko: Fall of X.A.N.A. Review,Poor,4
 DS,Final Fantasy IV Review,Superb,9
 PC,Supreme Ruler 2020 Review,Poor,4
+PS2,WALL-E Review,Good,7
 PS3,Buzz!: Quiz TV Review,Good,7
 PS3,Guitar Hero: Aerosmith Review,Good,7
 PS2,Guitar Hero: Aerosmith Review,Good,7
@@ -5049,6 +5043,9 @@ X360,Top Spin 3 Review,Great,8
 PS3,NASCAR 09 Review,Good,7
 X360,NASCAR 09 Review,Good,7
 DS,Guitar Hero: On Tour Review,Fair,6
+WII,WALL-E Review,Fair,6
+X360,WALL-E Review,Fair,6
+PS3,WALL-E Review,Fair,6
 PS3,Fatal Inertia EX Review,Fair,6
 X360,Deadliest Catch: Alaskan Storm Review,Poor,4
 WII,Rock Band Review,Great,8
@@ -9606,7 +9603,6 @@ MOBI,Amy's Hangman Review,Great,8
 PS2,Shadow of Rome Review,Great,8
 MOBI,Black Citadel Review,Good,7
 GC,Star Fox: Assault Review,Good,7
-PC,Star Wars Knights of the Old Republic II: The Sith Lords Review,Great,8
 MOBI,Surviving High School Review,Good,7
 NGE,X-Men Legends Review,Great,8
 XBOX,World Soccer Winning Eleven 8 International Review,Superb,9
@@ -9622,7 +9618,6 @@ NGE,Snakes Review,Great,8
 PS2,King of Colosseum II Review,Great,8
 XBOX,Oddworld Stranger's Wrath Review,Great,8
 DS,Zoo Keeper Review,Good,7
-PC,Advanced Battlegrounds: The Future of Combat Review,Fair,6
 PC,The Punisher Review,Fair,6
 MOBI,Tom Clancy's Splinter Cell Pandora Tomorrow 3D Review,Good,7
 XBOX,The Punisher Review,Fair,6
@@ -10213,7 +10208,6 @@ GBA,River City Ransom EX Review,Fair,6
 MOBI,CBS SportsLine Baseball 2004 Review,Great,8
 GBA,Tom Clancy's Splinter Cell Pandora Tomorrow Review,Fair,6
 XBOX,Tom Clancy's Splinter Cell Pandora Tomorrow Review,Superb,9
-PC,Singles: Flirt Up Your Life Review,Fair,6
 PC,Thief: Deadly Shadows Review,Great,8
 XBOX,Thief: Deadly Shadows Review,Great,8
 MOBI,Metal Slug Mobile Review,Good,7
@@ -11519,7 +11513,6 @@ PS2,Minority Report: Everybody Runs Review,Poor,4
 GC,Minority Report: Everybody Runs Review,Poor,4
 GC,Star Wars Bounty Hunter Review,Fair,6
 GC,Egg Mania: Eggstreme Madness Review,Fair,6
-PC,Treasure Planet: Battle at Procyon Review,Good,7
 PS2,Star Wars: The Clone Wars Review,Good,7
 GBA,Kirby: Nightmare in Dream Land Review,Good,7
 XBOX,Legends of Wrestling II Review,Fair,6
@@ -11615,7 +11608,6 @@ GC,Pro Rally Review,Mediocre,5
 PC,Deadly Dozen: Pacific Theater Review,Great,8
 PS2,NASCAR: Dirt to Daytona Review,Great,8
 GC,Big Air Freestyle Review,Poor,4
-PC,G.I. Combat: Episode 1: Battle of Normandy Review,Bad,3
 PS2,Twisted Metal: Black Online Review,Great,8
 GC,Resident Evil 0 Review,Great,8
 PS2,Jet X2O Review,Good,7
@@ -12805,7 +12797,6 @@ PS,Battle Arena Toshinden 3 Review,Good,7
 PS,Tokyo Highway Battle Review,Bad,3
 PS,Tobal No. 1 Review,Good,7
 PS,TNN Motor Sports Hardcore 4x4 Review,Fair,6
-PS,TimeShock! Pro-Pinball Review,Fair,6
 PS,Tigershark Review,Mediocre,5
 PS,CyberTiger Review,Mediocre,5
 PS,Thunder Force V Review,Great,8
@@ -14448,7 +14439,6 @@ PC,Dungeon Keeper 2 Review,Good,7
 PC,Kingpin: Life of Crime Review,Good,7
 PS,Driver Review,Good,7
 PC,Total Annihilation: Kingdoms Review,Fair,6
-DC,King of Fighters Dream Match 1999 Review,Great,8
 PC,Descent 3 Review,Superb,9
 N64,Tonic Trouble Review,Bad,3
 PS,Ape Escape Review,Great,8
@@ -14762,4 +14752,3 @@ PC,Dungeon Master II: The Legend of Skullkeep Review,Mediocre,5
 PC,Endorfun Review,Good,7
 PC,FIFA Soccer 96 Review,Superb,9
 PC,Full Throttle Review,Great,8
-"PC, MAC",Mass Effect 3: Citadel Review,Terrible,6,null

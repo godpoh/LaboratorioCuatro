@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package presentacion;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.TreeSet;
 import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import negocio.Juegos;
@@ -29,45 +26,10 @@ public class EliminarJuego extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         cargarJuegosNombresYDatos();
         Juegos.inicializarDatos();
+        inicializarListeners();
         jcbConsolas.setEnabled(false);
         jcbResena.setEnabled(false);
         jSpinner1.setEnabled(false);
-
-        jcbNombreJuegos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cargarDatosJuegoSeleccionado();
-            }
-        });
-
-        rdAaE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filtrarJuegosPorInicial('A', 'E');
-            }
-        });
-
-        rdFaK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filtrarJuegosPorInicial('F', 'K');
-            }
-        });
-
-        rdLaP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filtrarJuegosPorInicial('L', 'P');
-            }
-        });
-
-        rdQaV.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filtrarJuegosPorInicial('Q', 'V');
-            }
-        });
-
-        rdWaZ.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filtrarJuegosPorInicial('W', 'Z');
-            }
-        });
 
     }
 
@@ -303,22 +265,87 @@ public class EliminarJuego extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void inicializarListeners() {
+
+        jcbNombreJuegos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarDatosJuegoSeleccionado();
+            }
+        });
+
+        rdAaE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtrarJuegosPorInicial('A', 'E');
+            }
+        });
+
+        rdFaK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtrarJuegosPorInicial('F', 'K');
+            }
+        });
+
+        rdLaP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtrarJuegosPorInicial('L', 'P');
+            }
+        });
+
+        rdQaV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtrarJuegosPorInicial('Q', 'V');
+            }
+        });
+
+        rdWaZ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtrarJuegosPorInicial('W', 'Z');
+            }
+        });
+        
+        
+    }
+
     private void btnEliminarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarJuegoActionPerformed
         String nombre = (String) jcbNombreJuegos.getSelectedItem();
         Juegos juegos = new Juegos();
-    if (nombre != null && !nombre.isEmpty()) {
-        juegos.eliminarJuegoPorNombre(nombre);
-        Juegos.actualizarJComboBox(jcbNombreJuegos, jcbResena, jcbConsolas);
-        // Limpiar la información del juego eliminado
-        jcbConsolas.setSelectedIndex(0);
-        jcbResena.setSelectedIndex(0);
-        jSpinner1.setValue(1);
-        lblImagen.setIcon(null);
-        lblImagen.setText("Juego sin imagen");
-    } else {
-        JOptionPane.showMessageDialog(null, "Seleccione un juego para eliminar");
-    }
+        if (nombre != null && !nombre.isEmpty()) {
+            juegos.eliminarJuegoPorNombre(nombre);
+            actualizarComboBoxes(); // Actualizar los JComboBox después de eliminar el juego
+            // Limpiar la informacion del juego eliminado
+            jcbConsolas.setSelectedIndex(0);
+            jcbResena.setSelectedIndex(0);
+            jSpinner1.setValue(1);
+            lblImagen.setIcon(null);
+            lblImagen.setText("Juego sin imagen");
+            buttonGroup1.clearSelection();
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un juego para eliminar.");
+        }
     }//GEN-LAST:event_btnEliminarJuegoActionPerformed
+
+    private void actualizarComboBoxes() {
+        DefaultComboBoxModel<String> modelNombres = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<String> modelResenas = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<String> modelConsolas = new DefaultComboBoxModel<>();
+
+        for (String[] juego : Juegos.juegosNombres) {
+            if (juego.length > 1) {
+                modelNombres.addElement(juego[1]);
+            }
+            if (juego.length > 2) {
+                modelResenas.addElement(juego[2]);
+            }
+            if (juego.length > 0) {
+                modelConsolas.addElement(juego[0]);
+            }
+        }
+
+        jcbNombreJuegos.setModel(modelNombres);
+        jcbResena.setModel(modelResenas);
+        jcbConsolas.setModel(modelConsolas);
+    }
+
     private void filtrarJuegosPorInicial(char inicio, char fin) {
         Juegos juegos = new Juegos();
         TreeSet<String> nombresFiltrados = new TreeSet<>();
@@ -334,10 +361,11 @@ public class EliminarJuego extends javax.swing.JDialog {
     }
 
     private void actualizarComboBoxNombres(TreeSet<String> nombresFiltrados) {
-        jcbNombreJuegos.removeAllItems();
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         for (String nombre : nombresFiltrados) {
-            jcbNombreJuegos.addItem(nombre);
+            model.addElement(nombre);
         }
+        jcbNombreJuegos.setModel(model);
     }
 
     public void cargarJuegosNombresYDatos() {
