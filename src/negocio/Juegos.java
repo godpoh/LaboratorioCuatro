@@ -6,6 +6,9 @@ package negocio;
 
 import datos.BDEscrituraDatos;
 import datos.BDLecturaDatos;
+import static datos.BDLecturaDatos.consolasUnicas;
+import static datos.BDLecturaDatos.nombresUnicos;
+import static datos.BDLecturaDatos.resenasUnicas;
 import java.util.ArrayList;
 import java.util.HashSet;
 import javax.swing.JComboBox;
@@ -21,7 +24,7 @@ public class Juegos {
     public static ArrayList<String[]> juegosNombres = new ArrayList<>();
 
     // Method to initialize the game data
-        public static void inicializarDatos() {
+    public static void inicializarDatos() {
         // Read the CSV file and populate the juegosNombres list
         if (juegosNombres.isEmpty()) {
             juegosNombres = BDLecturaDatos.leerArchivoCSVJuegos();
@@ -30,8 +33,27 @@ public class Juegos {
 
     // Method to populate the JComboBox components
     public static void cargarDatosEnComboBox(JComboBox<String> jcbNombres, JComboBox<String> jcbResenas, JComboBox<String> jcbConsolas) {
-        BDLecturaDatos.cargarDatos(jcbNombres, jcbResenas, jcbConsolas);
+    // Imprimir tamaños para verificar
+    System.out.println("Tamaño de nombresUnicos: " + nombresUnicos.size());
+    System.out.println("Tamaño de resenasUnicas: " + resenasUnicas.size());
+    System.out.println("Tamaño de consolasUnicas: " + consolasUnicas.size());
+
+    jcbNombres.removeAllItems();
+    for (String nombre : nombresUnicos) {
+        jcbNombres.addItem(nombre);
     }
+
+    jcbResenas.removeAllItems();
+    for (String resena : resenasUnicas) {
+        jcbResenas.addItem(resena);
+    }
+
+    jcbConsolas.removeAllItems();
+    for (String consola : consolasUnicas) {
+        jcbConsolas.addItem(consola);
+    }
+}
+
 
     BDEscrituraDatos bdEscrituraDatos = new BDEscrituraDatos();
 
@@ -123,4 +145,13 @@ public class Juegos {
         JOptionPane.showMessageDialog(null, "Juego eliminado correctamente.");
     }
 
+    public static void actualizarJComboBox(JComboBox<String> jcbNombres, JComboBox<String> jcbResenas, JComboBox<String> jcbConsolas) {
+        // Limpiar los JComboBox
+        jcbNombres.removeAllItems();
+        jcbResenas.removeAllItems();
+        jcbConsolas.removeAllItems();
+
+        // Cargar los datos actualizados en los JComboBox
+        cargarDatosEnComboBox(jcbNombres, jcbResenas, jcbConsolas);
+    }
 }
