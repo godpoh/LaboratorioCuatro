@@ -4,10 +4,14 @@
  */
 package presentacion;
 
-import datos.BDLecturaDatos;
-import java.util.ArrayList;
-import java.util.HashSet;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+
 import java.util.TreeSet;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import negocio.Juegos;
 
 /**
@@ -16,6 +20,7 @@ import negocio.Juegos;
  */
 public class ModificarJuego extends javax.swing.JDialog {
 
+    String rutaImagen;
 //    private ArrayList<String[]> juegos;
     public ModificarJuego(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -294,7 +299,16 @@ public class ModificarJuego extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarAjustesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarAjustesActionPerformed
+        String consola = (String) jcbConsolas.getSelectedItem();
+        String nombre = (String) jcbNombreJuegos.getSelectedItem();
+        String resena = (String) jcbResena.getSelectedItem();
+        int puntuacion = (Integer) jSpinner1.getValue();
+        
 
+        String[] datosJuego = {consola, nombre, resena, String.valueOf(puntuacion), rutaImagen};
+
+        Juegos juegos = new Juegos();
+        juegos.modificarOInsertarJuego(datosJuego);
     }//GEN-LAST:event_btnIngresarAjustesActionPerformed
 
     private void jcbConsolasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbConsolasActionPerformed
@@ -315,7 +329,6 @@ public class ModificarJuego extends javax.swing.JDialog {
         actualizarComboBoxNombres(nombresFiltrados);
     }
 
-    // Method to update JComboBox with filtered names
     private void actualizarComboBoxNombres(TreeSet<String> nombresFiltrados) {
         jcbNombreJuegos.removeAllItems();
         for (String nombre : nombresFiltrados) {
@@ -335,12 +348,43 @@ public class ModificarJuego extends javax.swing.JDialog {
         Juegos juegos = new Juegos();
         String[] datosJuego = juegos.obtenerDatosJuegoPorNombre(nombreSeleccionado);
 
-//    ImageIcon imagenIcon = ImageIcon();
         if (datosJuego != null) {
             jcbConsolas.setSelectedItem(datosJuego[0]);
             jcbResena.setSelectedItem(datosJuego[1]);
             jSpinner1.setValue(Integer.parseInt(datosJuego[2]));
-//        lblImagen.setIcon(icon);;
+
+            rutaImagen = datosJuego.length > 3 ? datosJuego[3] : null;
+            if (rutaImagen != null && !rutaImagen.isEmpty()) {
+                // Ajustar la ruta de la imagen para buscar en el directorio adecuado
+                File file = new File("src/resources/imagenes/" + rutaImagen);
+                if (!file.exists()) {
+                    System.out.println("El archivo no existe: " + file.getAbsolutePath());
+                    lblImagen.setText("Error: Archivo no encontrado");
+                    lblImagen.setIcon(null);
+                    return;
+                }
+
+                try {
+                    BufferedImage bufferedImage = ImageIO.read(file);
+                    if (bufferedImage != null) {
+                        ImageIcon imagenIcon = new ImageIcon(bufferedImage);
+                        lblImagen.setIcon(imagenIcon);
+                        lblImagen.setText(""); // Limpiar texto si se carga la imagen
+                        lblImagen.revalidate();
+                        lblImagen.repaint();
+                    } else {
+                        lblImagen.setText("Error al cargar la imagen");
+                        lblImagen.setIcon(null);
+                    }
+                } catch (Exception e) {
+                    lblImagen.setText("Error al cargar la imagen");
+                    lblImagen.setIcon(null);
+                    JOptionPane.showMessageDialog(null, "Error al cargar la imagen");
+                }
+            } else {
+                lblImagen.setText("Juego sin imagen");
+                lblImagen.setIcon(null);
+            }
         }
     }
 

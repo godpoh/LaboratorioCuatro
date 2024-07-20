@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import static negocio.Juegos.juegosNombres;
 
 /**
  *
@@ -17,7 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class BDLecturaDatos {
 
-public static ArrayList<String[]> todosLosJuegos = new ArrayList<>();
+    private static final String RUTA_ARCHIVO = "src/resources/Games.csv";
+    public static ArrayList<String[]> todosLosJuegos = new ArrayList<>();
 
     public static ArrayList<String[]> leerArchivoCSVJuegos(String nombreArchivo) {
         try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
@@ -32,4 +34,8 @@ public static ArrayList<String[]> todosLosJuegos = new ArrayList<>();
 
         return todosLosJuegos;
     }
+
+
+
+    
 }

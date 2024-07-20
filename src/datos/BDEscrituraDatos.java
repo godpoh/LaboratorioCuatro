@@ -7,7 +7,9 @@ package datos;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import static negocio.Juegos.juegosNombres;
 
 /**
  *
@@ -24,11 +26,27 @@ public class BDEscrituraDatos {
                 archivo.createNewFile();
             }
             BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true));
-            bw.write("\n" + datosJuego );
+            bw.write("\n" + datosJuego);
             bw.close();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al insertar informacion del juego", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public static void escribirArchivoCSVJuegos(String rutaArchivo, ArrayList<String[]> juegos) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo));
+
+            for (String[] juego : juegos) {
+                String linea = String.join(",", juego);
+                bw.write(linea);
+                bw.newLine();
+            }
+
+            bw.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al escribir en el archivo CSV", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
