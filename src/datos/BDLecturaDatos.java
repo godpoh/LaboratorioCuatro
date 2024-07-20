@@ -78,17 +78,17 @@ public class BDLecturaDatos {
         System.out.println("Tamaño de todosLosJuegos: " + todosLosJuegos.size());
 
         // Update the JComboBox components after collecting all unique elements
-        jcbNombres.removeAllItems();
+        
         for (String nombre : nombresUnicos) {
             jcbNombres.addItem(nombre);
         }
 
-        jcbResenas.removeAllItems();
+        
         for (String resena : resenasUnicas) {
             jcbResenas.addItem(resena);
         }
 
-        jcbConsolas.removeAllItems();
+        
         for (String consola : consolasUnicas) {
             jcbConsolas.addItem(consola);
         }

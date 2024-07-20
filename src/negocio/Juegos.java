@@ -33,7 +33,8 @@ public class Juegos {
 
     // Method to populate the JComboBox components
     public static void cargarDatosEnComboBox(JComboBox<String> jcbNombres, JComboBox<String> jcbResenas, JComboBox<String> jcbConsolas) {
-        BDLecturaDatos.cargarDatos(jcbNombres, jcbResenas, jcbConsolas);
+        BDLecturaDatos bdLecturaDatos = new BDLecturaDatos();
+        bdLecturaDatos.cargarDatos(jcbNombres, jcbResenas, jcbConsolas);
     }
 
     BDEscrituraDatos bdEscrituraDatos = new BDEscrituraDatos();

@@ -344,7 +344,7 @@ public class ModificarJuego extends javax.swing.JDialog {
 
     public void cargarJuegosNombresYDatos() {
         Juegos juegos = new Juegos();
-        Juegos.cargarDatosEnComboBox(jcbNombreJuegos, jcbResena, jcbConsolas);
+        juegos.cargarDatosEnComboBox(jcbNombreJuegos, jcbResena, jcbConsolas);
 
     }
 

@@ -83,6 +83,7 @@ public class InsertarJuego extends javax.swing.JDialog {
 
         lblConsola.setText("Consola:");
 
+        jcbConsola.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una consola" }));
         jcbConsola.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbConsolaActionPerformed(evt);
@@ -92,6 +93,8 @@ public class InsertarJuego extends javax.swing.JDialog {
         lblNombre.setText("Nombre:");
 
         jLabel1.setText("Reseña:");
+
+        jcbResena.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elija reseña" }));
 
         lblPuntaje.setText("Puntaje:");
 
