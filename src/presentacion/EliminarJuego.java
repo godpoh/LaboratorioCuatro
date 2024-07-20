@@ -323,10 +323,9 @@ public class EliminarJuego extends javax.swing.JDialog {
     }
 
     public void cargarJuegosNombresYDatos() {
-        Juegos juegos = new Juegos();
-        juegos.cargarJuegosNombre(jcbNombreJuegos);
-        juegos.cargarConsolas(jcbConsolas);
-        juegos.cargarResenas(jcbResena);
+ 
+
+
     }
 
     private void cargarDatosJuegoSeleccionado() {

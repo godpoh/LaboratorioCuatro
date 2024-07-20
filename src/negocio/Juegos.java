@@ -19,8 +19,19 @@ import objetos.objDatosJuego;
 public class Juegos {
 
     public static ArrayList<String[]> juegosNombres = new ArrayList<>();
-    ArrayList<String[]> resenas = new ArrayList<>();
-    ArrayList<String[]> consolas = new ArrayList<>();
+
+    // Method to initialize the game data
+        public static void inicializarDatos() {
+        // Read the CSV file and populate the juegosNombres list
+        if (juegosNombres.isEmpty()) {
+            juegosNombres = BDLecturaDatos.leerArchivoCSVJuegos();
+        }
+    }
+
+    // Method to populate the JComboBox components
+    public static void cargarDatosEnComboBox(JComboBox<String> jcbNombres, JComboBox<String> jcbResenas, JComboBox<String> jcbConsolas) {
+        BDLecturaDatos.cargarDatos(jcbNombres, jcbResenas, jcbConsolas);
+    }
 
     BDEscrituraDatos bdEscrituraDatos = new BDEscrituraDatos();
 
@@ -29,10 +40,9 @@ public class Juegos {
     }
 
     private void cargarDatos() {
-        juegosNombres = BDLecturaDatos.leerArchivoCSVJuegos("src/resources/Games.csv");
+        juegosNombres = BDLecturaDatos.leerArchivoCSVJuegos();
         // Asignar las listas para resenas y consolas
-        resenas = juegosNombres; // Si el CSV contiene reseñas y las resenas tienen la misma estructura que juegos
-        consolas = juegosNombres; // Si el CSV contiene consolas y las consolas tienen la misma estructura que juegos
+
     }
 
     public void insertarJuego(ArrayList<objDatosJuego> listaJuego) {
@@ -48,43 +58,6 @@ public class Juegos {
         }
         bdEscrituraDatos.insertarEnArchivoJuego(datos);
         JOptionPane.showMessageDialog(null, "Se ha guardado correctamente la informacion.");
-    }
-
-    public void cargarJuegosNombre(JComboBox<String> jcbNombres) {
-        juegosNombres = BDLecturaDatos.leerArchivoCSVJuegos("src/resources/Games.csv");
-        HashSet<String> nombresUnicos = new HashSet<>();
-        for (String[] juego : juegosNombres) {
-            if (juego.length > 1) { // Asegúrate de que hay al menos dos elementos
-                nombresUnicos.add(juego[1]); // Asumiendo que el nombre del juego está en la segunda columna
-            }
-        }
-        jcbNombres.removeAllItems(); // Limpiar el JComboBox antes de añadir nuevos elementos
-        for (String nombre : nombresUnicos) {
-            jcbNombres.addItem(nombre);
-        }
-    }
-
-    public void cargarResenas(JComboBox<String> jcbResenas) {
-        HashSet<String> nombresUnicos = new HashSet<>();
-        for (String[] resena : resenas) {
-            if (resena.length > 2) { // Ensure there are at least three elements
-                nombresUnicos.add(resena[2]);
-            }
-        }
-        for (String nombre : nombresUnicos) {
-            jcbResenas.addItem(nombre);
-        }
-    }
-
-    public void cargarConsolas(JComboBox<String> jcbResenas) {
-        consolas = BDLecturaDatos.leerArchivoCSVJuegos("src/resources/Games.csv");
-        HashSet<String> nombresUnicos = new HashSet<>();
-        for (String[] consola : consolas) {
-            nombresUnicos.add(consola[0]); // Asumiendo que el nombre del juego está en la primera columna
-        }
-        for (String nombre : nombresUnicos) {
-            jcbResenas.addItem(nombre);
-        }
     }
 
     public String[] obtenerDatosJuegoPorNombre(String nombreJuego) {
@@ -122,7 +95,7 @@ public class Juegos {
         ArrayList<String[]> juegosActualizados = new ArrayList<>();
 
         // Leer todos los juegos del archivo CSV
-        ArrayList<String[]> juegos = BDLecturaDatos.leerArchivoCSVJuegos("src/resources/Games.csv");
+        ArrayList<String[]> juegos = BDLecturaDatos.leerArchivoCSVJuegos();
 
         // Buscar el juego por nombre y actualizar sus datos
         for (String[] juego : juegos) {
@@ -143,11 +116,11 @@ public class Juegos {
 
         JOptionPane.showMessageDialog(null, "Los datos del juego se han guardado correctamente.");
     }
-    public void eliminarJuegoPorNombre(String nombreJuego) {
-    juegosNombres.removeIf(juego -> juego.length > 1 && juego[1].equals(nombreJuego));
-    bdEscrituraDatos.guardarDatosActualizados(juegosNombres);
-    JOptionPane.showMessageDialog(null, "Juego eliminado correctamente.");
-    }
 
+    public void eliminarJuegoPorNombre(String nombreJuego) {
+        juegosNombres.removeIf(juego -> juego.length > 1 && juego[1].equals(nombreJuego));
+        bdEscrituraDatos.guardarDatosActualizados(juegosNombres);
+        JOptionPane.showMessageDialog(null, "Juego eliminado correctamente.");
+    }
 
 }

@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import datos.BDLecturaDatos;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -30,13 +31,23 @@ public class InsertarJuego extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        mostrarInformacion();
-        
+
         JSpinner.DefaultEditor editor = (JSpinner.DefaultEditor) jSpinner1.getEditor();
         JFormattedTextField textField = editor.getTextField();
 
         textField.setEditable(false);
         textField.setFocusable(false);
+        JComboBox<String> jcbNombres = new JComboBox<>();
+
+
+        // Add the combo boxes to the panel
+        // Initialize the game data
+        Juegos.inicializarDatos();
+
+        // Set the values in the JComboBox components
+        Juegos.cargarDatosEnComboBox(jcbNombres, jcbResena, jcbConsola);
+
+        // Make the frame visible
     }
 
     /**
@@ -252,11 +263,6 @@ public class InsertarJuego extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnInsertarJuegoActionPerformed
 
-    private void mostrarInformacion() {
-        Juegos juegos = new Juegos();
-        juegos.cargarConsolas(jcbConsola);
-        juegos.cargarResenas(jcbResena);
-    }
 
     private void jcbConsolaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbConsolaActionPerformed
         // TODO add your handling code here:
