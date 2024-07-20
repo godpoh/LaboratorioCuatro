@@ -641,7 +641,6 @@ NS,Fire Emblem Warriors Review,Fair,6
 "PC, XONE, PS4",The Evil Within 2 Review,Great,8
 PC,The Flame in the Flood Review,Great,8
 "PC, PS4, NS",Stardew Valley Review,Superb,9
-PC,A Hat In Time Review,Good,7
 PS4,Gundam Versus Review,Good,7
 "PS4, NS",Axiom Verge Review,Great,8
 NS,FIFA 18 Nintendo Switch Review,Mediocre,5
@@ -1339,7 +1338,7 @@ PS4,Helldivers Review,Great,8
 "PS4, XONE",DmC: Devil May Cry Definitive Edition Review,Superb,9
 "PC, PS4, XONE",Lords of the Fallen - Ancient Labyrinth Review,Bad,3
 "WIIU, 3DS",Mario vs. Donkey Kong: Tipping Stars Review,Mediocre,5
-PS4,Q*Bert Rebooted Review,Bad,3
+PS4,Q*Bert Rebooted Review,Bad,3,null
 VITA,Oreshika: Tainted Bloodlines Review,Great,8
 XONE,Screamride Review,Good,7
 XONE,Resident Evil: Revelations 2 - Episode Two Review,Fair,6
@@ -1429,7 +1428,6 @@ PS4,Little Big Planet 3 Review,Good,7
 3DS,Pokemon Omega Ruby/Alpha Sapphire Review,Great,8
 PC,This War of Mine Review,Great,8
 PS3,Grand Theft Auto V Review,Superb,9
-PC,A Bird Story Review,Great,8
 "PS4, XONE",Far Cry 4 Review,Good,7
 PC,Randal's Monday Review,Poor,4
 X360,Assassin's Creed Rogue Review,Fair,6
@@ -1459,7 +1457,6 @@ PC,Neverending Nightmares Review,Good,7
 PC,Civilization: Beyond Earth Review,Good,7
 PS4,The Evil Within Review,Good,7
 X360,F1 2014 Review,Fair,6
-PC,A City Sleeps Review,Mediocre,5
 XONE,Disney Fantasia: Music Evolved Review,Great,8
 XONE,The Legend of Korra Review,Bad,3
 PC,Falling Skies: The Game Review,Poor,4
@@ -2212,7 +2209,6 @@ VITA,MLB 13: The Show Review,Good,7
 PS3,MLB 13: The Show Review,Great,8
 X360,MLB 2K13 Review,Mediocre,5
 PS3,MLB 2K13 Review,Mediocre,5
-X360,Mass Effect 3: Citadel Review,Good,7
 PC,March of the Eagles Review,Good,7
 PC,Impire Review,Poor,4
 3DS,Castlevania: Lords of Shadow - Mirror of Fate Review,Good,7
@@ -2809,7 +2805,6 @@ DS,Professor Layton and the Last Specter Review,Great,8
 PS3,Uncharted 3: Drake's Deception Review,Superb,9
 WII,Kirby's Return to Dreamland Review,Good,7
 PS3,Rocksmith Review,Great,8
-PC,A Game of Thrones: Genesis Review,Mediocre,5
 PC,Red Orchestra 2: Heroes of Stalingrad Review,Good,7
 X360,Dance Central 2 Review,Great,8
 PS3,Wallabies Rugby Challenge Review,Fair,6
@@ -3076,8 +3071,7 @@ X360,Virtua Tennis 4 Review,Mediocre,5
 PS3,MX vs. ATV Alive Review,Fair,6
 X360,MX vs. ATV Alive Review,Fair,6
 PS3,Brink Review,Fair,6
-PS3,L.A. Noire Review,Superb,9
-X360,L.A. Noire Review,Superb,9
+PS3,L.A. Noire Review,Superb,9,null
 X360,AFL Live Review,Fair,6
 PC,Hydrophobia Prophecy Review,Good,7
 PC,Mount & Blade: With Fire & Sword Review,Good,7
@@ -4115,7 +4109,6 @@ PS3,Borderlands Review,Great,8
 X360,Borderlands Review,Great,8
 WII,Wii Fit Plus Review,Good,7
 X360,South Park Let's Go Tower Defense Play! Review,Good,7
-WII,A Boy and His Blob Review,Great,8
 WII,LostWinds: Winter of the Melodias Review,Great,8
 WII,Ju-On: The Grudge Review,Poor,4
 PC,Dreamkiller Review,Mediocre,5
@@ -4809,7 +4802,6 @@ X360,Are You Smarter Than a 5th Grader: Make the Grade Review,Good,7
 PC,Bully: Scholarship Edition Review,Fair,6
 X360,Penny Arcade Adventures: On the Rain-Slick Precipice of Darkness Episode Two Review,Good,7
 DS,The Legend of Kage 2 Review,Good,7
-DS,Away: Shuffle Dungeon Review,Mediocre,5
 PC,Rhiannon: Curse of the Four Branches Review,Good,7
 PC,Nikopol: Secrets of the Immortals Review,Mediocre,5
 X360,War World Review,Poor,4
@@ -5026,7 +5018,7 @@ DS,Looney Tunes: Cartoon Conductor Review,Fair,6
 PC,Out of the Park Baseball 9 Review,Great,8
 PS3,Civilization Revolution Review,Superb,9
 DS,Lego Indiana Jones: The Original Adventures Review,Good,7
-DS,WALL-E Review,Bad,3
+DS,WALL-E Review,Bad,3,null
 PS3,NCAA Football 09 Review,Good,7
 PC,Devil May Cry 4 Review,Great,8
 WII,Final Fantasy Fables: Chocobo's Dungeon Review,Good,7
@@ -5043,7 +5035,6 @@ X360,Kung Fu Panda Review,Fair,6
 DS,Code Lyoko: Fall of X.A.N.A. Review,Poor,4
 DS,Final Fantasy IV Review,Superb,9
 PC,Supreme Ruler 2020 Review,Poor,4
-PS2,WALL-E Review,Good,7
 PS3,Buzz!: Quiz TV Review,Good,7
 PS3,Guitar Hero: Aerosmith Review,Good,7
 PS2,Guitar Hero: Aerosmith Review,Good,7
@@ -5058,9 +5049,6 @@ X360,Top Spin 3 Review,Great,8
 PS3,NASCAR 09 Review,Good,7
 X360,NASCAR 09 Review,Good,7
 DS,Guitar Hero: On Tour Review,Fair,6
-WII,WALL-E Review,Fair,6
-X360,WALL-E Review,Fair,6
-PS3,WALL-E Review,Fair,6
 PS3,Fatal Inertia EX Review,Fair,6
 X360,Deadliest Catch: Alaskan Storm Review,Poor,4
 WII,Rock Band Review,Great,8
@@ -10867,8 +10855,6 @@ PC,In Cold Blood Review,Good,7
 PC,NHRA Drag Racing Main Event Review,Good,7
 GC,Wallace & Gromit in Project Zoo Review,Fair,6
 PC,Call of Duty Review,Superb,9
-GC,Tak and the Power of Juju Review,Fair,6
-PS2,Tak and the Power of Juju Review,Fair,6
 PC,Hidden & Dangerous 2 Review,Good,7
 PS2,Tony Hawk's Underground Review,Great,8
 XBOX,Tony Hawk's Underground Review,Great,8
@@ -14167,7 +14153,6 @@ N64,Castlevania Review,Great,8
 N64,California Speed Review,Poor,4
 N64,Bust-A-Move 2 Arcade Edition Review,Good,7
 N64,Bust-A-Move '99 Review,Fair,6
-N64,A Bug's Life Review,Fair,6
 N64,NHL Breakaway 99 Review,Fair,6
 N64,World Driver Championship Review,Mediocre,5
 N64,NFL Blitz 2000 Review,Great,8
@@ -14530,7 +14515,6 @@ PC,Total Air War Review,Superb,9
 PS,Apocalypse Review,Good,7
 PC,Extreme Paintbrawl Review,Abysmal,1
 PS,Twisted Metal III Review,Poor,4
-PS,A Bug's Life Review,Terrible,2
 PC,Delta Force Review,Superb,9
 PS,Crash Bandicoot 3: WARPED Review,Great,8
 N64,WCW/NWO Revenge Review,Good,7
@@ -14693,7 +14677,6 @@ PC,Theme Hospital Review,Mediocre,5
 N64,Doom 64 Review,Poor,4
 PC,Interstate '76 Review,Great,8
 PS,Vandal Hearts Review,Good,7
-PC,A Fork in the Tale Review,Bad,3
 PC,id Anthology Review,Good,7
 PC,Ultimate Yahtzee Review,Fair,6
 PC,Scrabble Review,Great,8
@@ -14779,3 +14762,4 @@ PC,Dungeon Master II: The Legend of Skullkeep Review,Mediocre,5
 PC,Endorfun Review,Good,7
 PC,FIFA Soccer 96 Review,Superb,9
 PC,Full Throttle Review,Great,8
+TG16,Mass Effect 3: Citadel Review,Early Access,10,null
