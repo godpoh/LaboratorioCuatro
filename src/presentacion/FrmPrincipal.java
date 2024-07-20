@@ -35,8 +35,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMIModificarJuego = new javax.swing.JMenuItem();
         jMIEliminarJuego = new javax.swing.JMenuItem();
         mReportes = new javax.swing.JMenu();
-        mReporte1 = new javax.swing.JMenu();
-        mReporte2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         mSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,21 +71,21 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         mReportes.setText("Reportes");
 
-        mReporte1.setText("Reporte 1");
-        mReporte1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem1.setText("Reporte 1");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mReporte1ActionPerformed(evt);
+                jMenuItem1ActionPerformed(evt);
             }
         });
-        mReportes.add(mReporte1);
+        mReportes.add(jMenuItem1);
 
-        mReporte2.setText("Reporte 2");
-        mReporte2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem2.setText("Reporte 2");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mReporte2ActionPerformed(evt);
+                jMenuItem2ActionPerformed(evt);
             }
         });
-        mReportes.add(mReporte2);
+        mReportes.add(jMenuItem2);
 
         jMenuBar1.add(mReportes);
 
@@ -132,16 +132,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_mSalirMouseClicked
 
-    private void mReporte1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mReporte1ActionPerformed
-        Reporte1 ventanaReporte1 = new Reporte1(this, true);
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+               Reporte1 ventanaReporte1 = new Reporte1(this, true);
         ventanaReporte1.setVisible(true);
-        
-    }//GEN-LAST:event_mReporte1ActionPerformed
 
-    private void mReporte2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mReporte2ActionPerformed
-        Reporte2 ventanaReporte2 = new Reporte2(this, true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+                        Reporte2 ventanaReporte2 = new Reporte2(this, true);
         ventanaReporte2.setVisible(true);
-    }//GEN-LAST:event_mReporte2ActionPerformed
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,9 +183,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMIInsertaJuego;
     private javax.swing.JMenuItem jMIModificarJuego;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu mCRUD;
-    private javax.swing.JMenu mReporte1;
-    private javax.swing.JMenu mReporte2;
     private javax.swing.JMenu mReportes;
     private javax.swing.JMenu mSalir;
     // End of variables declaration//GEN-END:variables

@@ -4,6 +4,12 @@
  */
 package presentacion;
 
+import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
+import negocio.Juegos;
+import static negocio.Juegos.cargarDatosEnComboBox;
+
 /**
  *
  * @author Admin
@@ -13,10 +19,12 @@ public class Reporte1 extends javax.swing.JDialog {
     /**
      * Creates new form Reporte1
      */
+
     public Reporte1(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        mostrarConsolas();
     }
 
     /**
@@ -30,13 +38,13 @@ public class Reporte1 extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableDatos = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -47,7 +55,7 @@ public class Reporte1 extends javax.swing.JDialog {
                 "Consola", "Nombre", "Reseña", "Puntaje"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableDatos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -117,9 +125,31 @@ public class Reporte1 extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+              String consolaSeleccionada = (String) jComboBox1.getSelectedItem();
+        mostrarJuegosPorConsola(consolaSeleccionada);
     }//GEN-LAST:event_jComboBox1ActionPerformed
+    
+   
+   private void mostrarConsolas() {
+        Juegos juego = new Juegos();
+        juego.cargarDatosConsolas(jComboBox1);
+    }
 
+    private void mostrarJuegosPorConsola(String consola) {
+        Juegos juego = new Juegos();
+        ArrayList<String[]> juegosFiltrados = juego.filtrarJuegosPorConsola(consola);
+        actualizarJTable(juegosFiltrados);
+    }
+
+    private void actualizarJTable(ArrayList<String[]> juegos) {
+        DefaultTableModel model = (DefaultTableModel) tableDatos.getModel();
+        model.setRowCount(0); // Clear existing rows
+
+        for (String[] juego : juegos) {
+            model.addRow(new Object[]{juego[0], juego[1], juego[2], juego[3]});
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -167,6 +197,6 @@ public class Reporte1 extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tableDatos;
     // End of variables declaration//GEN-END:variables
 }

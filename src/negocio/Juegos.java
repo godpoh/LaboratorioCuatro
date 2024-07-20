@@ -37,6 +37,11 @@ public class Juegos {
         bdLecturaDatos.cargarDatos(jcbNombres, jcbResenas, jcbConsolas);
     }
 
+    public static void cargarDatosConsolas(JComboBox<String> jcbConsolas) {
+        BDLecturaDatos bdLecturaDatos = new BDLecturaDatos();
+        bdLecturaDatos.cargarConsolas(jcbConsolas);
+    }
+
     BDEscrituraDatos bdEscrituraDatos = new BDEscrituraDatos();
 
     public Juegos() {
@@ -137,4 +142,13 @@ public class Juegos {
         cargarDatosEnComboBox(jcbNombres, jcbResenas, jcbConsolas);
     }
 
+    public ArrayList<String[]> filtrarJuegosPorConsola(String consola) {
+        ArrayList<String[]> juegosFiltrados = new ArrayList<>();
+        for (String[] juego : juegosNombres) {
+            if (juego[0].equals(consola)) {
+                juegosFiltrados.add(juego);
+            }
+        }
+        return juegosFiltrados;
+    }
 }

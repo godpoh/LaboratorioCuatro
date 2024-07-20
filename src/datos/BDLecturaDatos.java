@@ -78,21 +78,34 @@ public class BDLecturaDatos {
         System.out.println("Tamaño de todosLosJuegos: " + todosLosJuegos.size());
 
         // Update the JComboBox components after collecting all unique elements
-        
         for (String nombre : nombresUnicos) {
             jcbNombres.addItem(nombre);
         }
 
-        
         for (String resena : resenasUnicas) {
             jcbResenas.addItem(resena);
         }
 
-        
         for (String consola : consolasUnicas) {
             jcbConsolas.addItem(consola);
         }
     }
 
-}
+    public static void cargarConsolas(JComboBox<String> jcbConsolas) {
 
+        for (String[] juego : todosLosJuegos) {
+            if (juego.length > 0) {
+                consolasUnicas.add(juego[0]); // Asumiendo que el nombre de la consola está en la primera columna
+            }
+        }
+
+        System.out.println("Tamaño de nombresUnicos: " + nombresUnicos.size());
+        System.out.println("Tamaño de resenasUnicas: " + resenasUnicas.size());
+        System.out.println("Tamaño de consolasUnicas: " + consolasUnicas.size());
+        System.out.println("Tamaño de todosLosJuegos: " + todosLosJuegos.size());
+
+        for (String consola : consolasUnicas) {
+            jcbConsolas.addItem(consola);
+        }
+    }
+}
