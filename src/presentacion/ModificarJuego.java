@@ -11,7 +11,9 @@ import java.io.File;
 import java.util.TreeSet;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import negocio.Juegos;
 
 /**
@@ -20,13 +22,19 @@ import negocio.Juegos;
  */
 public class ModificarJuego extends javax.swing.JDialog {
 
-    String rutaImagen;
-//    private ArrayList<String[]> juegos;
+     String rutaImagen;
+
     public ModificarJuego(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         cargarJuegosNombresYDatos();
+        
+        JSpinner.DefaultEditor editor = (JSpinner.DefaultEditor) jSpinner1.getEditor();
+        JFormattedTextField textField = editor.getTextField();
+        
+        textField.setEditable(false);
+        textField.setFocusable(false);
 
         jcbNombreJuegos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

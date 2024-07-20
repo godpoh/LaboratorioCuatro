@@ -143,7 +143,11 @@ public class Juegos {
 
         JOptionPane.showMessageDialog(null, "Los datos del juego se han guardado correctamente.");
     }
-
+    public void eliminarJuegoPorNombre(String nombreJuego) {
+    juegosNombres.removeIf(juego -> juego.length > 1 && juego[1].equals(nombreJuego));
+    bdEscrituraDatos.guardarDatosActualizados(juegosNombres);
+    JOptionPane.showMessageDialog(null, "Juego eliminado correctamente.");
+    }
 
 
 }

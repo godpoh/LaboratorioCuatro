@@ -4,7 +4,6 @@
  */
 package presentacion;
 
-
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -32,7 +31,12 @@ public class InsertarJuego extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         mostrarInformacion();
+        
+        JSpinner.DefaultEditor editor = (JSpinner.DefaultEditor) jSpinner1.getEditor();
+        JFormattedTextField textField = editor.getTextField();
 
+        textField.setEditable(false);
+        textField.setFocusable(false);
     }
 
     /**
