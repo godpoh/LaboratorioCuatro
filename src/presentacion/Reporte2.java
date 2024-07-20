@@ -1,13 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package presentacion;
 
-/**
- *
- * @author Admin
- */
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import negocio.Juegos;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
+
 public class Reporte2 extends javax.swing.JDialog {
 
     /**
@@ -16,6 +16,9 @@ public class Reporte2 extends javax.swing.JDialog {
     public Reporte2(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        Juegos juegos = new Juegos();
+        juegos.cargarDatosConsolas(jcbConsolas);
     }
 
     /**
@@ -27,25 +30,135 @@ public class Reporte2 extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jcbConsolas = new javax.swing.JComboBox<>();
+        btnGraficar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jcbConsolas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una consola:" }));
+
+        btnGraficar.setText("Graficar");
+        btnGraficar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGraficarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(148, Short.MAX_VALUE)
+                .addComponent(jcbConsolas, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(126, 126, 126))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(230, 230, 230)
+                .addComponent(btnGraficar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jcbConsolas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnGraficar)
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 292, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficarActionPerformed
+        String consolaSeleccionada = (String) jcbConsolas.getSelectedItem();
+
+    // Contar los juegos que pertenecen a la consola seleccionada y a otras consolas
+    int cantidadJuegosSeleccionada = 0;
+    int cantidadJuegosOtras = 0;
+    int totalJuegos = 0;
+
+    for (String[] juego : Juegos.juegosNombres) {
+        if (juego.length > 0) {
+            totalJuegos++;
+            if (juego[0].equals(consolaSeleccionada)) {
+                cantidadJuegosSeleccionada++;
+            } else {
+                cantidadJuegosOtras++;
+            }
+        }
+    }
+
+    // Crear el dataset para el gráfico
+    DefaultPieDataset datos = new DefaultPieDataset();
+    datos.setValue("Juegos en " + consolaSeleccionada, cantidadJuegosSeleccionada);
+    datos.setValue("Otras Consolas", cantidadJuegosOtras);
+
+    // Crear el gráfico de pastel
+    JFreeChart graficoPastel = ChartFactory.createPieChart(
+            "Comparativa cantidad de juegos por consola", // nombre gráfico
+            datos, // datos 
+            true, // nombre categorías
+            true, // herramientas
+            false // generación URL
+    );
+
+    // Configurar el renderizador para mostrar etiquetas personalizadas
+    org.jfree.chart.plot.PiePlot plot = (org.jfree.chart.plot.PiePlot) graficoPastel.getPlot();
+    plot.setLabelGenerator(new org.jfree.chart.labels.StandardPieSectionLabelGenerator(
+        "{0}: {1} ({2})", // {0} = nombre, {1} = cantidad, {2} = porcentaje
+        new java.text.DecimalFormat("0"),
+        new java.text.DecimalFormat("0.00%")
+    ));
+
+    // Configurar el panel del gráfico
+    ChartPanel panel = new ChartPanel(graficoPastel);
+    panel.setMouseWheelEnabled(true);
+    panel.setPreferredSize(new Dimension(400, 300)); // Ajusta el tamaño si es necesario
+
+    // Añadir el panel del gráfico al JPanel
+    jPanel2.removeAll(); // Limpiar el panel antes de agregar el nuevo gráfico
+    jPanel2.setLayout(new BorderLayout());
+    jPanel2.add(panel, BorderLayout.CENTER);
+
+    pack();
+    repaint();
+    }//GEN-LAST:event_btnGraficarActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -86,5 +199,9 @@ public class Reporte2 extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGraficar;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JComboBox<String> jcbConsolas;
     // End of variables declaration//GEN-END:variables
 }

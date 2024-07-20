@@ -19,7 +19,6 @@ public class Reporte1 extends javax.swing.JDialog {
     /**
      * Creates new form Reporte1
      */
-
     public Reporte1(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -125,12 +124,11 @@ public class Reporte1 extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-              String consolaSeleccionada = (String) jComboBox1.getSelectedItem();
+        String consolaSeleccionada = (String) jComboBox1.getSelectedItem();
         mostrarJuegosPorConsola(consolaSeleccionada);
     }//GEN-LAST:event_jComboBox1ActionPerformed
-    
-   
-   private void mostrarConsolas() {
+
+    private void mostrarConsolas() {
         Juegos juego = new Juegos();
         juego.cargarDatosConsolas(jComboBox1);
     }
@@ -142,14 +140,14 @@ public class Reporte1 extends javax.swing.JDialog {
     }
 
     private void actualizarJTable(ArrayList<String[]> juegos) {
-        DefaultTableModel model = (DefaultTableModel) tableDatos.getModel();
-        model.setRowCount(0); // Clear existing rows
+        DefaultTableModel modelo = (DefaultTableModel) tableDatos.getModel();
+        modelo.setRowCount(0); 
 
         for (String[] juego : juegos) {
-            model.addRow(new Object[]{juego[0], juego[1], juego[2], juego[3]});
+            modelo.addRow(new Object[]{juego[0], juego[1], juego[2], juego[3]});
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */
