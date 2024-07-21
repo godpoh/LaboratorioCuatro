@@ -110,7 +110,7 @@ public class Reporte2 extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficarActionPerformed
-            String consolaSeleccionada = (String) jcbConsolas.getSelectedItem();
+             String consolaSeleccionada = (String) jcbConsolas.getSelectedItem();
     
     // Contar juegos por consola
     Map<String, Integer> conteoConsolas = contarJuegosPorConsola();
@@ -120,6 +120,9 @@ public class Reporte2 extends javax.swing.JDialog {
     
     // Crear el dataset para el gráfico
     DefaultPieDataset datos = new DefaultPieDataset();
+    
+    // Variable para acumular el total de juegos no incluidos en las top 6
+    int totalOtros = 0;
     
     // Añadir las top 6 consolas al dataset, excluyendo la consola seleccionada si está en el top
     boolean consolaSeleccionadaEnTop = false;
@@ -138,6 +141,17 @@ public class Reporte2 extends javax.swing.JDialog {
     } else {
         // Si la consola seleccionada estaba en el top 6, actualiza el valor en el dataset
         datos.setValue(consolaSeleccionada, obtenerCantidadJuegosSeleccionada(consolaSeleccionada, conteoConsolas));
+    }
+    
+    // Calcular el total de juegos en las top 6 y otros
+    int totalTop = topConsolas.stream().mapToInt(Map.Entry::getValue).sum();
+    int totalConsolaSeleccionada = obtenerCantidadJuegosSeleccionada(consolaSeleccionada, conteoConsolas);
+    
+    totalOtros = conteoConsolas.values().stream().mapToInt(Integer::intValue).sum() - totalTop - totalConsolaSeleccionada;
+    
+    // Añadir la categoría "Otros" si el total es mayor a 0
+    if (totalOtros > 0) {
+        datos.setValue("Otros", totalOtros);
     }
     
     // Crear el gráfico de pastel
@@ -191,7 +205,7 @@ public class Reporte2 extends javax.swing.JDialog {
         listaConsolas.sort((e1, e2) -> e2.getValue().compareTo(e1.getValue()));
 
         // Obtener las top 6 consolas
-        return (ArrayList<Map.Entry<String, Integer>>) listaConsolas.stream().limit(10).collect(Collectors.toList());
+        return (ArrayList<Map.Entry<String, Integer>>) listaConsolas.stream().limit(5).collect(Collectors.toList());
     }
 
     private int obtenerCantidadJuegosSeleccionada(String consolaSeleccionada, Map<String, Integer> conteoConsolas) {
