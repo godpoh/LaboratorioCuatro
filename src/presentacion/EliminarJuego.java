@@ -303,7 +303,6 @@ public class EliminarJuego extends javax.swing.JDialog {
             }
         });
         
-        
     }
 
     private void btnEliminarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarJuegoActionPerformed

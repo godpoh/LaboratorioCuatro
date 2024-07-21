@@ -315,7 +315,17 @@ public class ModificarJuego extends javax.swing.JDialog {
 
         Juegos juegos = new Juegos();
         juegos.modificarOInsertarJuego(datosJuego);
+        // Actualizar los JComboBox después de eliminar el juego
+        // Limpiar la informacion del juego eliminado
+        jcbConsolas.setSelectedIndex(0);
+        jcbResena.setSelectedIndex(0);
+        jcbNombreJuegos.setSelectedIndex(0);
+        jSpinner1.setValue(1);
+        lblImagen.setIcon(null);
+        lblImagen.setText("Juego sin imagen");
+        buttonGroup1.clearSelection();
     }//GEN-LAST:event_btnIngresarAjustesActionPerformed
+
 
     private void jcbConsolasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbConsolasActionPerformed
         // TODO add your handling code here:
@@ -364,7 +374,7 @@ public class ModificarJuego extends javax.swing.JDialog {
                 File file = new File("src/resources/imagenes/" + rutaImagen);
                 if (!file.exists()) {
                     System.out.println("El archivo no existe: " + file.getAbsolutePath());
-                    lblImagen.setText("Error: Archivo no encontrado");
+                    lblImagen.setText("Imagen no encontrada o no posee imagen");
                     lblImagen.setIcon(null);
                     return;
                 }
