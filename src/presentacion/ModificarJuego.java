@@ -9,6 +9,7 @@ import java.io.File;
 
 import java.util.TreeSet;
 import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
@@ -315,15 +316,14 @@ public class ModificarJuego extends javax.swing.JDialog {
 
         Juegos juegos = new Juegos();
         juegos.modificarOInsertarJuego(datosJuego);
-        // Actualizar los JComboBox después de eliminar el juego
-        // Limpiar la informacion del juego eliminado
+        jcbNombreJuegos.setSelectedIndex(0);
         jcbConsolas.setSelectedIndex(0);
         jcbResena.setSelectedIndex(0);
-        jcbNombreJuegos.setSelectedIndex(0);
         jSpinner1.setValue(1);
         lblImagen.setIcon(null);
         lblImagen.setText("Juego sin imagen");
         buttonGroup1.clearSelection();
+        actualizarComboBoxes();
     }//GEN-LAST:event_btnIngresarAjustesActionPerformed
 
 
@@ -331,6 +331,19 @@ public class ModificarJuego extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbConsolasActionPerformed
 
+    private void actualizarComboBoxes() {
+        DefaultComboBoxModel<String> modelNombres = new DefaultComboBoxModel<>();
+
+        for (String[] juego : Juegos.juegosNombres) {
+            if (juego.length > 1) {
+                modelNombres.addElement(juego[1]);
+            }
+        }
+
+        jcbNombreJuegos.setModel(modelNombres);
+        
+    }
+    
     private void filtrarJuegosPorInicial(char inicio, char fin) {
         Juegos juegos = new Juegos();
         TreeSet<String> nombresFiltrados = new TreeSet<>();
