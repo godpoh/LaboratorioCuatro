@@ -1,5 +1,6 @@
 package presentacion;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.TreeSet;
@@ -406,6 +407,9 @@ public class EliminarJuego extends javax.swing.JDialog {
                     BufferedImage bufferedImage = ImageIO.read(file);
                     if (bufferedImage != null) {
                         ImageIcon imagenIcon = new ImageIcon(bufferedImage);
+                        Image imagen = imagenIcon.getImage();
+                        Image newimg = imagen.getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), java.awt.Image.SCALE_SMOOTH);
+                        imagenIcon = new ImageIcon(newimg);
                         lblImagen.setIcon(imagenIcon);
                         lblImagen.setText(""); // Limpiar texto si se carga la imagen
                         lblImagen.revalidate();

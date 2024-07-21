@@ -236,7 +236,6 @@ public class InsertarJuego extends javax.swing.JDialog {
             Image newimg = imagen.getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), java.awt.Image.SCALE_SMOOTH);
             imagenIcon = new ImageIcon(newimg);
             lblImagen.setIcon(imagenIcon);
-
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

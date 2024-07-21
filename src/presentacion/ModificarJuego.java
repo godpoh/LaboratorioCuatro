@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -345,9 +346,9 @@ public class ModificarJuego extends javax.swing.JDialog {
         }
 
         jcbNombreJuegos.setModel(modelNombres);
-        
+
     }
-    
+
     private void filtrarJuegosPorInicial(char inicio, char fin) {
         Juegos juegos = new Juegos();
         TreeSet<String> nombresFiltrados = new TreeSet<>();
@@ -400,6 +401,9 @@ public class ModificarJuego extends javax.swing.JDialog {
                     BufferedImage bufferedImage = ImageIO.read(file);
                     if (bufferedImage != null) {
                         ImageIcon imagenIcon = new ImageIcon(bufferedImage);
+                        Image imagen = imagenIcon.getImage();
+                        Image newimg = imagen.getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), java.awt.Image.SCALE_SMOOTH);
+                        imagenIcon = new ImageIcon(newimg);
                         lblImagen.setIcon(imagenIcon);
                         lblImagen.setText(""); // Limpiar texto si se carga la imagen
                         lblImagen.revalidate();
