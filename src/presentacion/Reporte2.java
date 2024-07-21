@@ -2,6 +2,11 @@ package presentacion;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 import negocio.Juegos;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -105,29 +110,36 @@ public class Reporte2 extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficarActionPerformed
-        String consolaSeleccionada = (String) jcbConsolas.getSelectedItem();
-
-    // Contar los juegos que pertenecen a la consola seleccionada y a otras consolas
-    int cantidadJuegosSeleccionada = 0;
-    int cantidadJuegosOtras = 0;
-    int totalJuegos = 0;
-
-    for (String[] juego : Juegos.juegosNombres) {
-        if (juego.length > 0) {
-            totalJuegos++;
-            if (juego[0].equals(consolaSeleccionada)) {
-                cantidadJuegosSeleccionada++;
-            } else {
-                cantidadJuegosOtras++;
-            }
-        }
-    }
-
+            String consolaSeleccionada = (String) jcbConsolas.getSelectedItem();
+    
+    // Contar juegos por consola
+    Map<String, Integer> conteoConsolas = contarJuegosPorConsola();
+    
+    // Obtener las top 6 consolas
+    ArrayList<Map.Entry<String, Integer>> topConsolas = obtenerTopConsolas(conteoConsolas);
+    
     // Crear el dataset para el gráfico
     DefaultPieDataset datos = new DefaultPieDataset();
-    datos.setValue("Juegos en " + consolaSeleccionada, cantidadJuegosSeleccionada);
-    datos.setValue("Otras Consolas", cantidadJuegosOtras);
-
+    
+    // Añadir las top 6 consolas al dataset, excluyendo la consola seleccionada si está en el top
+    boolean consolaSeleccionadaEnTop = false;
+    
+    for (Map.Entry<String, Integer> consola : topConsolas) {
+        if (consola.getKey().equals(consolaSeleccionada)) {
+            consolaSeleccionadaEnTop = true;
+        } else {
+            datos.setValue(consola.getKey(), consola.getValue());
+        }
+    }
+    
+    // Añadir la cantidad de juegos de la consola seleccionada, solo si no estaba en el top 6
+    if (!consolaSeleccionadaEnTop) {
+        datos.setValue("Juegos en " + consolaSeleccionada, obtenerCantidadJuegosSeleccionada(consolaSeleccionada, conteoConsolas));
+    } else {
+        // Si la consola seleccionada estaba en el top 6, actualiza el valor en el dataset
+        datos.setValue(consolaSeleccionada, obtenerCantidadJuegosSeleccionada(consolaSeleccionada, conteoConsolas));
+    }
+    
     // Crear el gráfico de pastel
     JFreeChart graficoPastel = ChartFactory.createPieChart(
             "Comparativa cantidad de juegos por consola", // nombre gráfico
@@ -136,28 +148,55 @@ public class Reporte2 extends javax.swing.JDialog {
             true, // herramientas
             false // generación URL
     );
-
+    
     // Configurar el renderizador para mostrar etiquetas personalizadas
     org.jfree.chart.plot.PiePlot plot = (org.jfree.chart.plot.PiePlot) graficoPastel.getPlot();
     plot.setLabelGenerator(new org.jfree.chart.labels.StandardPieSectionLabelGenerator(
-        "{0}: {1} ({2})", // {0} = nombre, {1} = cantidad, {2} = porcentaje
-        new java.text.DecimalFormat("0"),
-        new java.text.DecimalFormat("0.00%")
+            "{0}: {1} ({2})", // {0} = nombre, {1} = cantidad, {2} = porcentaje
+            new java.text.DecimalFormat("0"),
+            new java.text.DecimalFormat("0.00%")
     ));
-
+    
     // Configurar el panel del gráfico
     ChartPanel panel = new ChartPanel(graficoPastel);
     panel.setMouseWheelEnabled(true);
     panel.setPreferredSize(new Dimension(400, 300)); // Ajusta el tamaño si es necesario
-
+    
     // Añadir el panel del gráfico al JPanel
     jPanel2.removeAll(); // Limpiar el panel antes de agregar el nuevo gráfico
     jPanel2.setLayout(new BorderLayout());
     jPanel2.add(panel, BorderLayout.CENTER);
-
+    
     pack();
     repaint();
     }//GEN-LAST:event_btnGraficarActionPerformed
+    private Map<String, Integer> contarJuegosPorConsola() {
+        HashMap<String, Integer> conteoConsolas = new HashMap<>();
+
+        for (String[] juego : Juegos.juegosNombres) {
+            if (juego.length > 0) {
+                String consola = juego[0];
+                conteoConsolas.put(consola, conteoConsolas.getOrDefault(consola, 0) + 1);
+            }
+        }
+
+        return conteoConsolas;
+    }
+
+    private ArrayList<Map.Entry<String, Integer>> obtenerTopConsolas(Map<String, Integer> conteoConsolas) {
+        // Convertir el mapa en una lista de entradas
+        ArrayList<Map.Entry<String, Integer>> listaConsolas = new ArrayList<>(conteoConsolas.entrySet());
+
+        // Ordenar la lista por la cantidad de juegos en orden descendente
+        listaConsolas.sort((e1, e2) -> e2.getValue().compareTo(e1.getValue()));
+
+        // Obtener las top 6 consolas
+        return (ArrayList<Map.Entry<String, Integer>>) listaConsolas.stream().limit(10).collect(Collectors.toList());
+    }
+
+    private int obtenerCantidadJuegosSeleccionada(String consolaSeleccionada, Map<String, Integer> conteoConsolas) {
+        return conteoConsolas.getOrDefault(consolaSeleccionada, 0);
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
