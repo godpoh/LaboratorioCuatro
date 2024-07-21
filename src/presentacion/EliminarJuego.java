@@ -388,7 +388,6 @@ public class EliminarJuego extends javax.swing.JDialog {
                 // Ajustar la ruta de la imagen para buscar en el directorio adecuado
                 File file = new File("src/resources/imagenes/" + rutaImagen);
                 if (!file.exists()) {
-                    System.out.println("El archivo no existe: " + file.getAbsolutePath());
                     lblImagen.setText("Error: Archivo no encontrado");
                     lblImagen.setIcon(null);
                     return;

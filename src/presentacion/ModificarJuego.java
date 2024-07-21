@@ -386,7 +386,6 @@ public class ModificarJuego extends javax.swing.JDialog {
                 // Ajustar la ruta de la imagen para buscar en el directorio adecuado
                 File file = new File("src/resources/imagenes/" + rutaImagen);
                 if (!file.exists()) {
-                    System.out.println("El archivo no existe: " + file.getAbsolutePath());
                     lblImagen.setText("Imagen no encontrada o no posee imagen");
                     lblImagen.setIcon(null);
                     return;

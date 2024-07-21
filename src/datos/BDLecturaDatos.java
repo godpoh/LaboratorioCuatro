@@ -35,7 +35,7 @@ public class BDLecturaDatos {
                 if (partes.length >= 3) { // Verificar que hay al menos 3 columnas
                     juegosList.add(partes);
                 } else {
-                    System.err.println("Línea inválida en CSV: " + linea);
+                    System.err.println("Linea inválida en CSV: " + linea);
                 }
             }
         } catch (Exception e) {
@@ -71,12 +71,7 @@ public class BDLecturaDatos {
                 consolasUnicas.add(juego[0]); // Asumiendo que el nombre de la consola está en la primera columna
             }
         }
-
-        System.out.println("Tamaño de nombresUnicos: " + nombresUnicos.size());
-        System.out.println("Tamaño de resenasUnicas: " + resenasUnicas.size());
-        System.out.println("Tamaño de consolasUnicas: " + consolasUnicas.size());
-        System.out.println("Tamaño de todosLosJuegos: " + todosLosJuegos.size());
-
+        
         // Update the JComboBox components after collecting all unique elements
         for (String nombre : nombresUnicos) {
             jcbNombres.addItem(nombre);
@@ -98,12 +93,7 @@ public class BDLecturaDatos {
                 consolasUnicas.add(juego[0]); // Asumiendo que el nombre de la consola está en la primera columna
             }
         }
-
-        System.out.println("Tamaño de nombresUnicos: " + nombresUnicos.size());
-        System.out.println("Tamaño de resenasUnicas: " + resenasUnicas.size());
-        System.out.println("Tamaño de consolasUnicas: " + consolasUnicas.size());
-        System.out.println("Tamaño de todosLosJuegos: " + todosLosJuegos.size());
-
+        
         for (String consola : consolasUnicas) {
             jcbConsolas.addItem(consola);
         }
